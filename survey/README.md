@@ -16,8 +16,20 @@ survey/
 ├── requirements.txt             # App dependencies
 ├── .streamlit/
 │   └── secrets.toml.example     # Template for local secrets (copy to secrets.toml, do not commit the real one)
-├── analysis/
-│   └── analyze_responses.py     # Standalone script: pulls responses from Sheets, computes agreement stats
+├── analysis/                    # Offline analysis of the exported responses (see section 6)
+│   ├── run_all.py               # Runs every module below and writes REPORT.md
+│   ├── summary.py               # Headline accuracy + every alternative metric
+│   ├── common.py                # Loading, deduplication, agreement statistics
+│   ├── descriptive.py           # Annotators and raw judgment distributions
+│   ├── agreement.py             # Fleiss' kappa, Gwet's AC1, bootstrap CIs
+│   ├── aggregation.py           # Majority vote and alternatives (Dawid–Skene, ...)
+│   ├── annotator_reliability.py # Are dissenters less reliable? Robustness to annotator filters
+│   ├── error_analysis.py        # Rejected relations, Not sure by outcome, claim direction
+│   ├── matching.py              # Ingredient-matching task
+│   ├── consensus.py             # Consensus score/grade per evaluated graph element
+│   ├── disagreement.py          # Learning from disagreement: CrowdTruth, MACE, soft labels
+│   ├── decision_confidence.py   # How certain each verdict is (sign test, bootstrap, entropy)
+│   └── requirements.txt         # Analysis dependencies
 └── README.md
 ```
 
@@ -83,8 +95,7 @@ links must be distributed manually to each sub-group of students.
 
 1. **Create the Google Sheet** that will store responses. Note its exact
    name (or switch the app to open by key/ID — see the note in `app.py`
-   and `analysis/analyze_responses.py` where `SPREADSHEET_NAME` is
-   defined). No worksheet setup is required — the app creates both the
+   where `SPREADSHEET_NAME` is defined). No worksheet setup is required — the app creates both the
    `responses` worksheet (main items) and `ingredient_match_responses`
    worksheet (extra task) with their header rows automatically on first
    submission if they don't already exist.
@@ -175,41 +186,47 @@ redeploy/restart, and multiple sessions may run on different underlying
 instances — this is why the app never writes to local disk and uses
 Google Sheets as the single source of truth for all responses.
 
-## 6. Running the analysis script
+## 6. Running the analysis
 
-`analysis/analyze_responses.py` is a standalone script, run locally (not
-part of the deployed app), that pulls all rows from the `responses`
-worksheet and computes:
-
-- A per-item summary: `item_id, type, food, target, % Agree, % Disagree,
-  % Not sure, % flagged oversimplified, number of raters`
-- An overall Fleiss' kappa (categories: Agree / Disagree / Not sure) across
-  items that share the same (modal) number of raters, using
-  `statsmodels.stats.inter_rater.fleiss_kappa` if installed, or a direct
-  implementation otherwise.
-
-Setup:
+The analysis runs locally (not part of the deployed app) on an Excel
+export of the Google Sheet. Download it via File > Download > Microsoft
+Excel (.xlsx) and drop it in `../../data/survey_results/`.
 
 ```bash
 cd survey/analysis
-pip install statsmodels pandas gspread google-auth
+pip install -r requirements.txt
+python run_all.py                         # newest .xlsx in data/survey_results/
+python run_all.py path/to/export.xlsx     # or an explicit file
 ```
 
-The script reuses credentials from `../.streamlit/secrets.toml` by default
-(the same file used by the app locally). If running on Python < 3.11,
-also `pip install tomli` (used as the `tomllib` fallback for reading that
-file). Alternatively, drop a raw service-account JSON key at
-`analysis/service_account.json` (already covered by `.gitignore`).
+`run_all.py` writes everything to one place:
 
-Update `SPREADSHEET_NAME` at the top of the script to match `app.py`, then
-run:
+- `REPORT.md` — all results in one file, with tables
+- `results/*.csv` — one CSV per table
 
-```bash
-python analyze_responses.py
-```
+Each module can also be run on its own (e.g. `python aggregation.py`).
+They split the analysis by what it measures:
 
-This prints the summary table and overall kappa to the console and saves
-the summary table to `analysis/summary.csv`.
+| Module | Measures |
+|---|---|
+| `summary.py` | Majority-vote accuracy and the same figure under every alternative metric, with Wilson CIs |
+| `descriptive.py` | Annotator demographics; % Agree / Not sure / Disagree per item and per relation type |
+| `agreement.py` | Inter-annotator agreement: Fleiss' kappa (variable raters per item), Gwet's AC1, item-bootstrap 95% CIs |
+| `aggregation.py` | Item-level accept/reject: majority vote with Not sure as abstention (headline), plurality, strict majority, Dawid–Skene |
+| `annotator_reliability.py` | Leave-one-out agreement, whether Disagree votes cluster or scatter, disagreement by year/English level, robustness to annotator filters |
+| `error_analysis.py` | Most-rejected relations, Not sure by health outcome, protective vs risk claims, oversimplified flags, vote-entropy difficulty |
+| `matching.py` | Ingredient-matching judgments, food groups, automated vs human labels, similarity-score threshold |
+| `disagreement.py` | Learning-from-disagreement aggregation (CrowdTruth 2.0, MACE), soft accuracy, per-relation soft labels |
+| `consensus.py` | Consensus score and grade for every evaluated graph element (written to Neo4j by `data/kg_edits/add_consensus.py`) |
+| `decision_confidence.py` | Per-relation doubt values (margin, sign test, entropy, bootstrap reject probability); clear vs contested verdicts; precision with Wilson CIs |
+
+**Deduplication.** Some respondents submitted their block more than once
+(page reloads, identical answers). `common.load()` keeps only the first
+submission per (respondent, item) so nobody is counted twice. The report
+states how many rows were removed.
+
+The raw export and all generated outputs are git-ignored since they
+contain real respondent data.
 
 ## Notes on privacy
 

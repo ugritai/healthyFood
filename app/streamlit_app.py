@@ -292,7 +292,10 @@ def show_nutrient_data(id):
 
     def normalize_nutrient_name(name):
         return nutrient_aliases.get(name.strip().lower(), name)
+FoodMedKG Evaluation Survey
+No valid survey block was found in this link.
 
+Please use the exact link that was shared with you by the study coordinators (it should look like ...?block=3). If you believe this is an error, contact the research team rather than guessing a block number.
     # --- Normalizar y combinar nutrientes, conservando unidades ---
     normalized_constituents = {}
     for k, v in constituents.items():

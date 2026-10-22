@@ -21,7 +21,11 @@ evaluation/results_old/
 # Survey app — secrets and generated outputs (not source)
 survey/.streamlit/secrets.toml
 survey/analysis/service_account.json
-survey/analysis/summary.csv
+survey/analysis/results/
+survey/analysis/REPORT.md
+
+# Raw survey response exports — human-subjects data, not for version control
+data/survey_results/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -230,3 +234,6 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+.DS_Store
+data/kg_edits/
+survey/paper/

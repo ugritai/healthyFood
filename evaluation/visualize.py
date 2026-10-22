@@ -556,12 +556,10 @@ def fig_b_group_variety(df: pd.DataFrame, out: Path) -> None:
     _save(fig, out)
 
 
-def fig_b_combined(df_q: pd.DataFrame, df_groups: pd.DataFrame, out: Path, top_k: int) -> None:
-    """Side-by-side: score spread (b6) + accuracy lollipop (b5), shared y-axis."""
+def fig_b_combined(df_q: pd.DataFrame, df_groups: pd.DataFrame, out: Path) -> None:
+    """Side-by-side: score spread (b6) + Top-1 accuracy lollipop (b5), shared y-axis."""
     from matplotlib.colors import LinearSegmentedColormap
     from matplotlib.lines import Line2D
-
-    top_k_col = f"top{top_k}"
 
     # Shared group order: ascending score std
     group_std    = df_q.groupby("group")["top1_score"].std().sort_values(ascending=True)
@@ -625,16 +623,12 @@ def fig_b_combined(df_q: pd.DataFrame, df_groups: pd.DataFrame, out: Path, top_k
     df_lol = df_groups.set_index("group").reindex(groups_sorted).reset_index()
     perf_colors = [perf_cmap(float(v)) for v in df_lol["top1"].values]
 
+    # Only Top-1 is shown: every correct match is ranked first, so Top-k and MRR equal Top-1
     for i, (_, row) in enumerate(df_lol.iterrows()):
-        t1  = float(row["top1"])    * 100
-        tk  = float(row[top_k_col]) * 100
-        mrr = float(row["mrr"])     * 100
-        c   = perf_colors[i]
+        t1 = float(row["top1"]) * 100
+        c  = perf_colors[i]
         ax_lol.plot([75, t1], [i, i], color=c, linewidth=1.5, solid_capstyle="round", zorder=2)
-        ax_lol.plot([t1, tk], [i, i], color="#888888", linewidth=1.0, linestyle="--", alpha=0.55, zorder=2)
         ax_lol.scatter(t1, i, s=80, color=c, zorder=4, edgecolors="white", linewidths=0.8)
-        ax_lol.scatter(tk, i, s=50, marker="D", color="none",
-                       edgecolors="#888888", linewidths=1.2, zorder=4)
         ax_lol.text(101.5, i, f"{t1:.0f}%", va="center",
                     fontsize=19, color=c, fontweight="bold", clip_on=False)
 
@@ -642,27 +636,11 @@ def fig_b_combined(df_q: pd.DataFrame, df_groups: pd.DataFrame, out: Path, top_k
     ax_lol.set_xlim(73, 108)
     ax_lol.set_xticks([75, 85, 95])
     ax_lol.axvline(100, color="#BDBDBD", linestyle="--", linewidth=0.8, zorder=1)
-    ax_lol.set_title(f"(B)  Top-1 / Top-{top_k}",
+    ax_lol.set_title("(B)  Top-1 accuracy",
                      fontsize=22, fontweight="bold", pad=14)
     ax_lol.tick_params(left=False, axis="x", labelsize=19)
     ax_lol.grid(axis="x", alpha=0.15, linewidth=0.5)
     ax_lol.set_axisbelow(True)
-
-    sm = plt.cm.ScalarMappable(cmap=perf_cmap, norm=plt.Normalize(vmin=75, vmax=100))
-    sm.set_array([])
-    cbar = fig.colorbar(sm, ax=ax_lol, fraction=0.018, pad=0.08)
-    cbar.set_label("Top-1 Accuracy (%)", fontsize=17)
-    cbar.ax.tick_params(labelsize=16)
-
-    handles_b = [
-        Line2D([0], [0], marker="o", color="w", markerfacecolor="#43A047",
-               markersize=9, label="Top-1 Accuracy"),
-        Line2D([0], [0], marker="D", color="w", markerfacecolor="none",
-               markeredgecolor="#888888", markersize=8, label=f"Top-{top_k} Accuracy"),
-    ]
-    ax_lol.legend(handles=handles_b, loc="upper center",
-                  bbox_to_anchor=(0.5, -0.07), ncol=2,
-                  fontsize=17, framealpha=0.95, edgecolor="#DDDDDD")
 
     fig.suptitle(
         "Ingredient matching: score spread and retrieval accuracy by food group",
@@ -1184,7 +1162,7 @@ def main() -> None:
         fig_b_group_accuracy(df_g, out / f"b4_group_accuracy.{fmt}", top_k)
         fig_b_group_lollipop(df_g, out / f"b5_group_lollipop.{fmt}", top_k)
         if query_csv:
-            fig_b_combined(df_q, df_g, out / f"b56_combined.{fmt}", top_k)
+            fig_b_combined(df_q, df_g, out / f"b56_combined.{fmt}")
 
     if kg_csv:
         df_kg = pd.read_csv(kg_csv)
