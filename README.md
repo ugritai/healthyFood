@@ -25,12 +25,20 @@ survey/              human evaluation app and analysis
 
 Each folder has its own `requirements.txt` (Python 3.12).
 
+## Knowledge graph
+
+The graph is released as a Neo4j dump, and can also be rebuilt from the
+source tables. See [data/README.md](data/README.md).
+
 ## Application
 
-Needs a running Neo4j database with the graph and Ollama.
+Needs a running Neo4j database with the graph (see above) and Ollama.
+
+The Neo4j password is read from the `NEO4J_PASSWORD` environment variable.
 
 ```bash
 pip install -r app/requirements.txt
+ollama pull qwen3:8b-q8_0       # LLM used by the app (Qwen3-8B)
 cd app
 streamlit run streamlit_app.py
 ```

@@ -29,6 +29,7 @@ Usage
 """
 
 import argparse
+import os
 import json
 import re
 import sys
@@ -68,7 +69,7 @@ def main() -> None:
                     help="use only the extractions of this model; 'all' for the five models")
     ap.add_argument("--neo4j-uri", default="bolt://localhost:17687")
     ap.add_argument("--neo4j-user", default="neo4j")
-    ap.add_argument("--neo4j-pass", default="TFGAmadeo")
+    ap.add_argument("--neo4j-pass", default=os.environ.get("NEO4J_PASSWORD", "neo4j"))
     args = ap.parse_args()
     res = LINKING_DIR / "results"
     tag = "" if args.model == "qwen3:8b-q8_0" else f"_{args.model.split(':')[0]}"

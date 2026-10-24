@@ -38,7 +38,7 @@ Options
     --runs N            LLM runs per recipe (default 1).
     --neo4j-uri URI     Neo4j bolt URI (default bolt://localhost:17687).
     --neo4j-user U      Neo4j username (default neo4j).
-    --neo4j-pass P      Neo4j password (default TFGAmadeo).
+    --neo4j-pass P      Neo4j password (default: $NEO4J_PASSWORD, else neo4j).
     --top-k K           Candidate window for matching eval (default 3).
 """
 
@@ -722,7 +722,7 @@ def main() -> None:
     parser.add_argument("--runs",       type=int, default=1, metavar="N")
     parser.add_argument("--neo4j-uri",  default="bolt://localhost:17687")
     parser.add_argument("--neo4j-user", default="neo4j")
-    parser.add_argument("--neo4j-pass", default="TFGAmadeo")
+    parser.add_argument("--neo4j-pass", default=os.environ.get("NEO4J_PASSWORD", "neo4j"))
     parser.add_argument("--top-k",          type=int,   default=3,    metavar="K")
     parser.add_argument("--soft-threshold", type=float, default=None, metavar="T",
                         help="Enable soft semantic F1 with cosine similarity threshold (e.g. 0.80)")

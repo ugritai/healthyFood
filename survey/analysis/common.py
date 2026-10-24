@@ -74,7 +74,9 @@ class SurveyData:
 
 
 def find_default_xlsx() -> Path:
-    candidates = sorted(RAW_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime, reverse=True)
+    # Files marked "not_to_use" (e.g. exports with edited answers) are never picked.
+    candidates = sorted((p for p in RAW_DIR.glob("*.xlsx") if "not_to_use" not in p.name),
+                        key=lambda p: p.stat().st_mtime, reverse=True)
     if not candidates:
         raise FileNotFoundError(f"No .xlsx file found in {RAW_DIR}. Pass a path explicitly.")
     return candidates[0]

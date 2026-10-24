@@ -26,7 +26,14 @@ and the correctness criterion of `evaluate.py`, and compares:
 
 - **string only**: Jaro–Winkler, token-set ratio, TF-IDF of character 3–5-grams;
 - **embeddings only**: all-MiniLM-L6-v2 (the system's model), all-mpnet-base-v2,
-  bge-small-en-v1.5, bge-base-en-v1.5, e5-base-v2, multilingual-e5-base;
+  bge-small-en-v1.5, bge-base-en-v1.5, e5-base-v2, multilingual-e5-base, and
+  AI2Cuisine (BERT fine-tuned on food data, Morales-Garzón et al., 2025).
+  The other models are downloaded automatically from Hugging Face. AI2Cuisine
+  (419 MB) is downloaded from
+  [Google Drive](https://drive.google.com/drive/folders/16ZXUbQukqnpAaIMkSy5hckFvAZAWZpTE?usp=sharing):
+  place the model folder in `evaluation/` so that
+  `evaluation/12-20_22-39_1000016b_4ep_3000wu_2e-07lr/` contains the model
+  files. Without it, `baselines.py` runs the other models only;
 - **hybrid** `S = w·cosine + (1 − w)·Jaro–Winkler` for w = 0.0 … 1.0 with each
   model, the system's w = 0.7, and w chosen by 5-fold cross-validation
   (w picked on four folds, evaluated on the fifth; ties broken by taking the

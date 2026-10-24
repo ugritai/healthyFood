@@ -189,8 +189,22 @@ Google Sheets as the single source of truth for all responses.
 ## 6. Running the analysis
 
 The analysis runs locally (not part of the deployed app) on an Excel
-export of the Google Sheet. Download it via File > Download > Microsoft
-Excel (.xlsx) and drop it in `../../data/survey_results/`.
+export of the Google Sheet.
+
+**Data of the paper.** The anonymised responses of the human evaluation
+used in the paper are available on
+[Google Drive](https://drive.google.com/drive/folders/1FeyDIut6ksEiC9HC-KRVrcTrvrxaqQ7q?usp=sharing).
+Download `FoodMedKG_Survey_Responses-dos cuestionarios.xlsx` (the
+original export, with the annotators' answers unchanged) and place it in
+`data/survey_results/` (at the repository root). To reproduce the paper's
+numbers, pass it explicitly:
+
+```bash
+python run_all.py "../../data/survey_results/FoodMedKG_Survey_Responses-dos cuestionarios.xlsx"
+```
+
+**Your own survey.** Export the Google Sheet via File > Download > Microsoft
+Excel (.xlsx) and place it in `data/survey_results/`.
 
 ```bash
 cd survey/analysis
@@ -225,8 +239,8 @@ They split the analysis by what it measures:
 submission per (respondent, item) so nobody is counted twice. The report
 states how many rows were removed.
 
-The raw export and all generated outputs are git-ignored since they
-contain real respondent data.
+The raw export and all generated outputs are git-ignored; the responses
+used in the paper are distributed separately (link above).
 
 ## Notes on privacy
 

@@ -11,10 +11,8 @@ Versions of every external resource used in the paper.
 | DTU | Through FooDB (see above) | Not downloaded separately. |
 | Food–Disease Relation dataset | Nacev et al. (2021) | Food–disease relations (`FDR` tables). |
 | Applied Pathophysiology for Dietetics | Relations compiled from the textbook [47] | Released in `data/applied_pathophysiology_relations.csv` (see below). |
+| Healthy ageing | Tessier, A.J., Wang, F., Korat, A.A. et al. Optimal dietary patterns for healthy aging. *Nat Med* 31, 1644–1652 (2025). https://doi.org/10.1038/s41591-025-03570-5 | Values per food category digitised from the study (`ES` tables). |
 | RecipeNLG | Kaggle `paultimothymooney/recipenlg`, `RecipeNLG_dataset.csv` | Not redistributed. Used for the held-out recipes in `evaluation/linking/`. |
-
-`foodb_internal_id` and the `FooDB_id` property in the graph are the project's
-internal FooDB food ids, not FooDB's public ids (e.g. `FOOD00534`).
 
 ### Checksums of the source tables used to build the graph
 
@@ -44,6 +42,7 @@ FooDB food was assigned), disease, `suitable_for_disease` (1 = suitable,
 | Model | Version |
 |---|---|
 | Sentence embedding | `sentence-transformers/all-MiniLM-L6-v2`, Hugging Face revision `1110a243fdf4706b3f48f1d95db1a4f5529b4d41` |
+| AI2Cuisine (baseline in `evaluation/linking/`) | BERT sentence-transformer fine-tuned on food data (from `bert-base-nli-max-tokens`), Morales-Garzón et al. (2025); download: [Google Drive](https://drive.google.com/drive/folders/16ZXUbQukqnpAaIMkSy5hckFvAZAWZpTE?usp=sharing) |
 | Qwen3-8B | Ollama `qwen3:8b-q8_0`, digest `e56358ca25dd14db6853a9f68a92d717aaa6f0a94250a72d1a0f3d86a9f30130` |
 | Llama 3.1 8B | Ollama `llama3.1:8b-instruct-q8_0`, digest `b158ded76fa05be6bce8a682099ce5df8c5571340a04cf63a2923464679db576` |
 | Gemma 2 9B | Ollama `gemma2:9b-instruct-q8_0`, digest `54faa8324fdf5138279b835f87f39c30db7a534b4211fabad80e476ddbd9e409` |

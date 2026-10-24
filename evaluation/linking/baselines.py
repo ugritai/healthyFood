@@ -45,6 +45,7 @@ misspelled queries).
 """
 
 import argparse
+import os
 import json
 import sys
 from pathlib import Path
@@ -68,7 +69,7 @@ EMBEDDING_MODELS = [
     "intfloat/e5-base-v2",
     "intfloat/multilingual-e5-base",
 ]
-# AI2Cuisine model: our BERT sentence-transformer fine-tuned on food data (from bert-base-nli-max-tokens),
+# AI2Cuisine model: BERT sentence-transformer fine-tuned on food data (from bert-base-nli-max-tokens),
 # from Morales-Garzón et al. (2025), AI2Cuisine; not versioned (419 MB)
 FINETUNED_MODEL = EVAL_DIR / "12-20_22-39_1000016b_4ep_3000wu_2e-07lr"
 if FINETUNED_MODEL.exists():
@@ -137,7 +138,7 @@ def main() -> None:
     p.add_argument("--models", nargs="+", default=EMBEDDING_MODELS)
     p.add_argument("--neo4j-uri", default="bolt://localhost:17687")
     p.add_argument("--neo4j-user", default="neo4j")
-    p.add_argument("--neo4j-pass", default="TFGAmadeo")
+    p.add_argument("--neo4j-pass", default=os.environ.get("NEO4J_PASSWORD", "neo4j"))
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--typo-seeds", type=int, default=5, help="number of misspelled versions of the queries")
     p.add_argument("--typo-rate", type=float, default=0.25, help="fraction of queries given a misspelling")

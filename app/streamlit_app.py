@@ -8,6 +8,7 @@ from neo4j import GraphDatabase
 from langchain_core.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM
 import json
+import os
 import re
 import random
 from rapidfuzz.distance import JaroWinkler
@@ -16,13 +17,13 @@ from sentence_transformers.util import cos_sim
 #------ 1 CARGAR E INICIALIZAR OLLAMA Y NEO4J ------
 
 # LLM de Ollama
-llm = OllamaLLM(model="qwen2.5",
+llm = OllamaLLM(model="qwen3:8b-q8_0",
                     options={"temperature": 0.0})
 
 # Datos de la base de datos de  Neo4j
 server = "neo4j://127.0.0.1:17687"
 username = "neo4j"
-password = "TFGAmadeo" #Contraseña
+password = os.environ.get("NEO4J_PASSWORD", "neo4j")
 
 # Inicializa el cliente de Neo4j
 try:
@@ -533,7 +534,6 @@ with sidebar:
         - The way of finding ingredients from a recipe is done thanks to a LLM made with Ollama.
         - The app was created and designed using Streamlit. 
 
-        - This app was made from scratch by **Amadeo Martínez Sánchez** as a final degree project.
         """,
         unsafe_allow_html=True
     )
