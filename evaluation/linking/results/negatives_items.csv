@@ -1,0 +1,257 @@
+ingredient,n_mentions,words,n_removed,top1_full_kg,s_full_kg,top1_after_removal,s_after_removal,rejected
+yogurt,3,yogurt,77,Yogurt,1.0,Yoghurt,0.8785,False
+marshmallow,1,marshmallow,12,"Marshmellows, unspecified",0.8384,"Marshmellows, unspecified",0.8384,False
+pepperoni,2,pepperoni,18,Pepper,0.8224,Pepper,0.8224,False
+celery,2,celery,17,"Celery, raw",0.8767,"Celeriac, raw",0.8025,False
+cranberry juice,1,cranberry;juice,255,"Cranberry juice, unsweetened",0.8827,"Cranberries, raw",0.7666,False
+eggplant,2,eggplant,4,Eggplant,1.0,Eggnog,0.7424,False
+lemonade concentrate,1,concentrate;lemonade,97,"Lemonade, frozen concentrate, white",0.8293,"Lemon juice, canned or bottled",0.7334,False
+cucumber,3,cucumber,14,Cucumber,1.0,Cucurbita,0.7293,False
+parmesan,1,parmesan,12,Parsnip,0.7227,Parsnip,0.7227,False
+chickpea,1,chickpea,6,Chickpea,1.0,Chicken,0.7107,False
+chicken,1,chicken,206,Chicken,1.0,Chickpea,0.7107,False
+sliced grapefruit,1,grapefruit;sliced,44,Grapefruit,0.8112,Grape,0.7092,False
+plain yogurt,1,plain;yogurt,210,Soy yogurt,0.779,Yoghurt,0.6934,False
+seaweed,1,seaweed,8,"Seaweed, agar",0.85,"Fireweed, leaves, raw",0.6881,False
+cheddar,1,cheddar,23,"Cheese, cheddar",0.7992,Cheese,0.6848,False
+sweet chilli sauce,1,chilli;sauce;sweet,415,Chili,0.684,Chili,0.684,False
+radish,1,radish,18,Radish,1.0,"Radicchio, raw",0.6714,True
+sweetener,1,sweetener,24,"Sweeteners, tabletop, saccharin",0.7796,"Sweetcorn, kernels, canned",0.6696,True
+chicken breast,3,breast;chicken,215,Chicken,0.8121,Chickpea,0.6597,True
+tomato,5,tomato,104,Tomato puree,0.779,Potato,0.6572,True
+chocolate,1,chocolate,237,Chocolate,1.0,"Cocoa, powder",0.6551,True
+pasta,1,pasta,45,Pasta,1.0,"Macaroni, spaghetti, raw",0.6512,True
+hamburger,1,hamburger,29,"BURGER KING, Hamburger",0.7661,Tempeh burger,0.651,True
+greek yogurt,1,greek;yogurt,79,Soy yogurt,0.7855,Yoghurt,0.648,True
+walnut,1,walnut,11,Walnuts,0.9316,Hazelnut,0.6448,True
+spicemode masala cooking sauce,1,cooking;masala;sauce;spicemode,165,"Spices, cumin seed",0.6425,"Spices, cumin seed",0.6425,True
+creamed corn,1,corn;creamed,204,Corn,0.7187,"Cheese, cream",0.6418,True
+almond,2,almond,36,Almond,1.0,Walnuts,0.6409,True
+powdered sugar,1,powdered;sugar,144,"Sugars, granulated",0.681,Pudding powder,0.6396,True
+watermelon,2,watermelon,2,Watermelon,1.0,Muskmelon,0.636,True
+bread,3,bread,164,"Bread, wheat",0.8615,Rye,0.6301,True
+cabbage,1,cabbage,33,"Cabbage, raw",0.8537,Carrot,0.629,True
+sugar,7,sugar,144,Sugar substitute,0.8041,Syrup,0.6282,True
+kombu,1,kombu,0,Kohlrabi,0.6275,Kohlrabi,0.6275,True
+pizza sauce,2,pizza;sauce,201,Pizza,0.7986,Pasta,0.6201,True
+cayenne pepper,1,cayenne;pepper,111,"Peppers, cayenne, raw",0.7547,"Spices, celery seed",0.6188,True
+jelly,1,jelly,5,Apple jelly,0.6941,Jellies,0.6176,True
+confectioners sugar,1,confectioner;confectioners;sugar,151,"Candies, confectioner's coating, butterscotch",0.6733,"Candies, sweet chocolate",0.6162,True
+butterscotch bit,1,bit;butterscotch,56,"Candies, butterscotch",0.6862,"Butter, without salt",0.6135,True
+mozzarella,2,mozzarella,14,"Cheese, mozzarella, nonfat",0.7342,Pizza,0.6108,True
+chicken broth,1,broth;chicken,223,Chicken,0.7804,Chickpea,0.6108,True
+sourdough bread,1,bread;sourdough,169,"Bread, french or vienna (includes sourdough)",0.6567,"Soursop, raw",0.61,True
+beef,1,beef,504,"Beef, cured, thin-sliced beef",0.7543,Beer,0.61,True
+water,14,water,228,"Water, tap, drinking",0.7579,Beer,0.6095,True
+pineapple juice,1,juice;pineapple,269,"Pineapple juice, canned",0.8963,Fruit-flavor drink,0.6092,True
+carom seed,1,carom;seed,192,Coriander seed,0.6369,Carob,0.6085,True
+sparkling grape juice,1,grape;juice;sparkling,289,Grape juice,0.7457,"Carbonated beverage, orange",0.6076,True
+chicken wing,1,chicken;wing,216,Chicken,0.782,Chickpea,0.606,True
+orange,1,orange,65,"Orange, raw",0.8125,Grape,0.6055,True
+ragu spaghetti sauce,1,ragu;sauce;spaghetti,181,"Sauce, pasta, spaghetti/marinara, ready-to-serve",0.6476,Pasta,0.5981,True
+fillet,1,fillet,14,"Ling, fillet, raw",0.6463,"Millet, puffed",0.5962,True
+syrup,1,syrup,98,Syrup,1.0,"Soft drink, sugar added",0.5954,True
+pecan,1,pecan,11,Pecan nut,0.8391,"Pectin, liquid",0.5952,True
+sweetened condensed milk,2,condensed;milk;sweetened,564,"Milk, canned, condensed, sweetened",0.7577,"Sweetcorn, kernels, canned",0.594,True
+cherry kijafa,1,cherry;kijafa,46,"Cherry, raw",0.6681,"Cherimoya, raw",0.593,True
+nori,1,nori,0,Poi,0.5917,Poi,0.5917,True
+banana,1,banana,60,"Banana, raw",0.8244,Coconut,0.5916,True
+tortilla,3,tortilla,25,"Tortillas, ready-to-bake or -fry, corn",0.7824,"Tostada shells, corn",0.5916,True
+cilantro,4,cilantro,2,"Coriander (cilantro) leaves, raw",0.5956,Coriander,0.5898,True
+pineapple,1,pineapple,46,Pineapple,1.0,Pear,0.5894,True
+pine nuts,1,nut;nuts;pine,324,"Nuts, almonds",0.6882,Almond,0.5884,True
+chili,1,chili,36,Chili,1.0,Chicken,0.5879,True
+sesame seed,3,seed;sesame,203,"Sesame seed, decorticated",0.874,"Cereals ready-to-eat, QUAKER, SUN COUNTRY Granola with Almonds",0.5878,True
+mango,1,mango,9,Mango,1.0,Papaya,0.5877,True
+lowfat chocolate milk,1,chocolate;lowfat;milk,486,"Chocolate, milk",0.7595,"Cheese, cream, low fat",0.5868,True
+rice,2,rice,116,Rice,1.0,Barley,0.5867,True
+pesto,1,pesto,1,Miso,0.5866,Miso,0.5866,True
+parmesan cheese,1,cheese;parmesan,361,"Cheese, parmesan, hard",0.8278,Parsnip,0.5851,True
+brandied cherry,1,brandied;cherry,46,Sour cherry,0.7139,Candied fruit,0.585,True
+cheese,6,cheese,358,Cheese,1.0,Chocolate,0.5844,True
+potato,2,potato,105,Potato,1.0,Carrot,0.5837,True
+carrot,2,carrot,27,Carrot,1.0,Potato,0.5837,True
+pea,1,pea,232,Pigeon pea,0.736,Bean,0.5824,True
+wheat flour,1,flour;wheat,255,Wheat flour,1.0,Breakfast cereal,0.5818,True
+lime,2,lime,19,"Lime, raw",0.8189,Lemon,0.5808,True
+chocolate-flavor nesquik powder,1,chocolate;flavor;nesquik;powder,546,"Chocolate-flavor beverage mix for milk, powder, with added nutrients",0.7319,"Bisquit, sweet, vanilla flavoured",0.58,True
+chilies,1,chili;chilie;chilies;chily,36,Chili,0.9138,Chicken,0.5798,True
+avocado,1,avocado,6,"Avocado, raw",0.8663,Almond,0.5794,True
+black sesame seed,1,black;seed;sesame,264,"Sesame seed, decorticated",0.7319,"Snacks, oriental mix, rice-based",0.5794,True
+butterscotch chip,1,butterscotch;chip,68,"Candies, butterscotch",0.6885,"Butter, without salt",0.5791,True
+bacon,3,bacon,36,"Bacon, meatless",0.8123,"Bologna, pork",0.5788,True
+corn,2,corn,200,Corn,1.0,Sorghum,0.5788,True
+tortilla chip,1,chip;tortilla,80,"Tortilla chips, yellow, plain, salted",0.7687,"TACO BELL, BURRITO SUPREME with chicken",0.5771,True
+fatty tuna,1,fatty;tuna,18,Albacore tuna,0.7374,"Fat, chicken",0.577,True
+adobo pepper,1,adobo;pepper,112,Adobo fresco,0.7301,Adzuki bean,0.5758,True
+vegetable oil,2,oil;vegetable,370,"Vegetable oil, palm kernel",0.8045,Vegetarian food,0.5744,True
+goat cheese,1,cheese;goat,362,Goat milk,0.7793,"Chocolate, milk",0.5735,True
+italian salad dressing,1,dressing;italian;salad,169,"Salad dressing, italian",0.9065,"Sauce, alfredo mix, dry",0.5734,True
+black pepper,2,black;pepper,180,"Pepper, black",0.7833,Chili,0.5715,True
+chili paste with garlic and ginger (in a jar),1,chili;garlic;ginger;jar;paste,99,"Chili with beans, canned",0.6824,"Spices, onion powder",0.5712,True
+vinegar,2,vinegar,11,Vinegar,1.0,Apple cider,0.5695,True
+pork,1,pork,313,"Pork, cocktail sausage",0.7529,"Pig, fat",0.5695,True
+baguette,1,baguette,5,"Baguette, with rye, industrial product",0.7752,"Bagel, wheat",0.5692,True
+cherry tomato,1,cherry;tomato,148,Cherry tomato,1.0,Strawberry,0.569,True
+soy sauce,3,sauce;soy,335,Soy sauce,1.0,"Oil, sesame",0.5687,True
+condensed milk,1,condensed;milk,443,"Milk, canned, condensed, sweetened",0.7295,"Carbonated drinks, Cola",0.5686,True
+sesame oil,2,oil;sesame,232,"Oil, sesame",0.7991,Peanut butter,0.5685,True
+tofu,1,tofu,38,Tofu,1.0,"Toffees, unspecified",0.5682,True
+dried red chili,1,chili;dried;red,1078,"Spices, chili powder",0.6627,"Spices, pepper, white",0.5677,True
+tomato sauce,2,sauce;tomato,223,"Tomato products, canned, sauce",0.8001,Pasta,0.5675,True
+tomato juice,1,juice;tomato,328,Fruit juice,0.7903,Fruit-flavor drink,0.5673,True
+chorizo sausage,1,chorizo;sausage,84,"Chorizo, pork and beef",0.7853,"OSCAR MAYER, Bologna (chicken, pork, beef)",0.5669,True
+kosher salt,2,kosher;salt,187,"Salmon, salted",0.5862,"Sauerkraut, canned, low sodium",0.5668,True
+peanut butter,1,butter;peanut,174,Peanut butter,1.0,Walnut oil,0.5666,True
+thai white peppercorn,1,peppercorn;thai;white,281,"Spices, pepper, white",0.5981,Yellow bell pepper,0.5657,True
+sweet chili sauce,1,chili;sauce;sweet,447,Chili,0.7625,Pepper (Capsicum),0.5653,True
+sour cream,2,cream;sour,277,"Sour cream, light",0.8739,Soy sauce,0.5652,True
+pita,1,pita,6,Pitanga,0.7227,Chia,0.5651,True
+french-fried onion,1,french;fried;onion,88,"Onions, chopped, frozen",0.6382,Chili,0.5642,True
+red bell pepper,1,bell;pepper;red,1357,Red bell pepper,1.0,Green bean,0.5639,True
+chick pea,1,chick;pea,439,Chickpea,0.8106,Soy bean,0.562,True
+cake flour,1,cake;flour,212,Rice flour,0.7809,Baking powder,0.5617,True
+pepper,6,pepper,111,Pepper,1.0,"Spices, chili powder",0.5612,True
+mayonnaise,2,mayonnaise,31,Mayonnaise,1.0,"McDONALD'S, Tangy Honey Mustard Sauce",0.5603,True
+milk,5,milk,308,"Milk, skimmed",0.7653,Chocolate,0.5593,True
+sea salt,2,salt;sea,224,"Salt, sea salt (no iodine fortification)",0.6989,"Fish oil, sardine",0.559,True
+sweet potato,1,potato;sweet,365,Sweet potato,1.0,Cherry tomato,0.5588,True
+salt,16,salt,186,"Salt, table",0.7932,"Salami, Italian, pork and beef, dry, sliced, 50% less sodium",0.5578,True
+lemon juice,3,juice;lemon,315,"Lemon juice, raw",0.8813,"Energy drink, VAULT, citrus flavor",0.5567,True
+butter,10,butter,148,"Butter, salted",0.8132,Peanut oil,0.5559,True
+ice,2,ice,634,Ice cream sandwich,0.67,"Raspberry, frozen",0.5552,True
+garlic,2,garlic,16,Garlic,1.0,Parsley,0.5551,True
+brown sugar,3,brown;sugar,192,"Sugar, brown",0.7961,"Syrups, corn, dark",0.5551,True
+paprika,1,paprika,1,"Spices, paprika",0.658,Papaya,0.5549,True
+creme fraiche,1,creme;fraiche,18,Cream Crackers,0.5547,Cream Crackers,0.5547,True
+chinese five-spice powder,1,chinese;five;powder;spice,258,"Spices, chili powder",0.7005,"Snacks, oriental mix, rice-based",0.5545,True
+caesar pasta salad,1,caesar;pasta;salad,169,"McDONALD'S, Caesar Salad with Crispy Chicken",0.7274,"Macaroni, spaghetti, raw",0.5545,True
+coconut milk,2,coconut;milk,334,Coconut,0.8566,Chocolate,0.5544,True
+pickle,1,pickle,34,"Pickles, cucumber, sour",0.7831,Kale,0.5536,True
+instant vanilla pudding,1,instant;pudding;vanilla,281,"Puddings, vanilla, dry mix, instant",0.78,"Cream substitute, flavored, liquid",0.5522,True
+prawn,1,prawn,0,Shrimp,0.5521,Shrimp,0.5521,True
+water cracker,1,cracker;water,289,Cracker,0.7314,"Bread, cracked-wheat",0.5501,True
+cream cheese,3,cheese;cream,579,"Cheese, cream",0.8361,"Chocolate, milk",0.55,True
+balsamic vinegar,1,balsamic;vinegar,12,"Vinegar, balsamic",0.817,"Grape juice, canned or bottled, unsweetened, with added ascorbic acid",0.5498,True
+spinach,1,spinach,19,Spinach,1.0,Pineapple,0.5496,True
+olive oil,8,oil;olive,220,Olive oil,1.0,Garlic,0.5486,True
+ground beef,2,beef;ground,535,"Beef, grass-fed, ground, raw",0.6627,"Frankfurter, meat",0.5484,True
+mozzarella cheese,2,cheese;mozzarella,361,"Cheese, mozzarella, nonfat",0.7605,Pizza,0.5481,True
+pork tenderloin,1,pork;tenderloin,320,"Pork, tenderloin, trimmed, raw",0.7876,"Honey roll sausage, beef",0.547,True
+coriander,1,coriander,5,Coriander,1.0,"Cranberry, raw",0.5467,True
+lemon,1,lemon,86,Lemon,1.0,Almond,0.5459,True
+garlic powder,1,garlic;powder,197,Garlic,0.8351,"Italian oregano, fresh",0.5459,True
+zucchini,1,zucchini,16,Green zucchini,0.8403,Broccoli,0.5455,True
+green onion,1,green;onion,165,Garden onion (var.),0.7722,Garlic,0.545,True
+flour,3,flour,98,"Wheat flour, whole-grain",0.7445,Wheat bread,0.5449,True
+sliced oranges,1,orang;orange;oranges;sliced,83,Sweet orange,0.6918,Fruit gums,0.544,True
+garlic salt,1,garlic;salt,202,Garlic,0.8528,Olive oil,0.5433,True
+eggs,1,egg;eggs,129,Eggs,1.0,"Waffles, buttermilk, frozen, ready-to-heat",0.542,True
+basil,1,basil,7,"Basil, fresh",0.8343,Parsley,0.5419,True
+mango chutney,1,chutney;mango,9,Mango,0.7966,Strawberry,0.5418,True
+chorizo,1,chorizo,1,"Chorizo, pork and beef",0.7498,Chia,0.5416,True
+hot red pepper flakes,1,flak;flake;flakes;hot;pepper;red,1201,Red bell pepper,0.6767,"Oil, flaxseed, cold pressed",0.5409,True
+cheese slice,1,cheese;slice,406,Cheese,0.7925,Ice cream sandwich,0.5399,True
+salad dressing mix,1,dressing;mix;salad,415,Salad dressing,0.9219,"Mustard greens, raw",0.5392,True
+olive,2,olive,16,Olive,1.0,Sunflower,0.5376,True
+dressing,2,dressing,83,Salad dressing,0.7719,"Gourd, dishcloth (towelgourd), raw",0.5374,True
+basil leaf,2,basil;leaf,26,"Basil, fresh",0.7833,Parsley,0.5372,True
+garlic clove,2,clove;garlic,17,Garlic,0.8702,Coriander,0.5371,True
+scallion,2,scallion,1,"Potatoes, scalloped, home-prepared with margarine",0.5365,"Potatoes, scalloped, home-prepared with margarine",0.5365,True
+red pepper flakes,1,flak;flake;flakes;pepper;red,1163,Red bell pepper,0.7578,"Orange peel, raw",0.5365,True
+corn tortilla,1,corn;tortilla,219,Corn,0.7726,"TACO BELL, Original Taco with beef, cheese and lettuce",0.5351,True
+mustard,1,mustard,16,"Oil, mustard",0.8539,"Sauce, barbecue",0.5347,True
+cocktail peanut,1,cocktail;peanut,84,Peanut butter,0.6406,Chocolate,0.5341,True
+laban,1,laban,0,Yambean,0.534,Yambean,0.534,True
+yeast,1,yeast,11,Yeast extract spread,0.7134,"Candies, confectioner's coating, yogurt",0.5335,True
+thai peanut dipping sauce,1,dipping;peanut;sauce;thai,212,"McDONALD'S, Tangy Honey Mustard Sauce",0.6001,Chinese mustard,0.5335,True
+rotel tomato,1,rotel;tomato,104,Garden tomato,0.6606,"Broccoli, raw",0.5323,True
+ham,2,ham,185,"Ham, minced",0.7543,"Macaroni and cheese loaf, chicken, pork and beef",0.5323,True
+basic yeast dough,1,basic;dough;yeast,41,"Yeast, baker's, compressed",0.6195,"Bread stuffing, bread, dry mix, prepared",0.5322,True
+kidney bean,1,bean;kidney,228,"Beans, liquid from stewed kidney beans",0.6847,Pigeon pea,0.5317,True
+orange rind,1,orange;rind,81,"Orange, raw",0.6894,Grapefruit,0.5306,True
+pita bread half,1,bread;half;pita,190,"Bread, pita, whole-wheat",0.7376,"Mother's loaf, pork",0.5304,True
+puff pastry,1,pastry;puff,54,"Puff pastry, frozen, ready-to-bake",0.8332,"Swiss roll, apricot stuffing",0.5301,True
+tuna,1,tuna,18,"Tuna, raw",0.8569,"WENDY'S, Ultimate Chicken Grill Sandwich",0.53,True
+honey teriyaki marinade,1,honey;marinade;teriyaki,61,"Sauce, teriyaki, ready-to-serve",0.6756,"Ravioli, meat-filled, with tomato sauce or meat sauce, canned",0.5293,True
+yuzu miso sauce,1,miso;sauce;yuzu,150,Miso,0.6619,Chinese mustard,0.5291,True
+jicama,1,jicama,1,"Yambean (jicama), raw",0.6627,Chickpea,0.5288,True
+cream,1,cream,231,"Cream, 18 % fat",0.7714,"Oil, cocoa butter",0.5277,True
+kalamata olive,1,kalamata;olive,16,Olive,0.6313,Sunflower,0.5263,True
+egg white,1,egg;white,402,"Egg, white, raw, fresh",0.7863,Guinea hen,0.5258,True
+taco seasoning,1,seasoning;taco,22,"TACO BELL, Nachos",0.6133,"Burrito, beef and bean, frozen",0.5257,True
+asafoetida powder,1,asafoetida;powder,182,Tomato powder,0.6433,"Babyfood, dessert, fruit dessert, without ascorbic acid, junior",0.5257,True
+duck breast,1,breast;duck,20,"Duck, breast, flesh only, raw",0.7561,Goose fat,0.5252,True
+toothpick,2,toothpick,0,Carrot,0.5242,Carrot,0.5242,True
+summer squash,1,squash;summer,48,"Squash, summer, all varieties, raw",0.7653,Green zucchini,0.5241,True
+curry rice,1,curry;rice,119,Curry powder,0.7031,"Restaurant, Chinese, sweet and sour chicken",0.5229,True
+mushroom soup,1,mushroom;soup,520,"Mushroom, canned",0.7464,Pasta,0.5228,True
+sweet vermouth,1,sweet;vermouth,278,"Vermouth, sweet",0.8836,"Soft drink, sugar added",0.5221,True
+onion,3,onion,49,"Onion, raw",0.8363,Garlic,0.5217,True
+black olive,2,black;olive,87,Olive,0.7291,Cauliflower,0.5212,True
+poppy seed,1,poppy;seed,198,Poppy seeds,0.967,Pepper,0.5205,True
+whipped cream,1,cream;whipped,237,"Cream, fluid, heavy whipping",0.73,Chocolate syrup,0.52,True
+gochugaru,1,gochugaru,0,"Cheese, gouda",0.5194,"Cheese, gouda",0.5194,True
+red onion,1,onion;red,1088,"Onion, raw",0.7074,Garlic,0.5178,True
+low-sodium instant chicken bouillon granules,1,bouillon;chicken;granul;granule;granules;instant;low;sodium,732,"Soup, bouillon cubes and granules, low sodium, dry",0.6752,"Spinach, canned, no salt added, solids and liquids",0.5172,True
+leek,2,leek,4,"Leek, raw",0.7705,Lemon,0.5169,True
+harissa,1,harissa,0,Cassava,0.5161,Cassava,0.5161,True
+vanilla bean,1,bean;vanilla,313,Bean,0.7074,Rowanberry,0.516,True
+red curry paste,1,curry;paste;red,1089,Curry powder,0.6332,"Juice, sour orange",0.5155,True
+tomatillo,1,tomatillo,1,"Tomatillos, raw",0.7932,Cauliflower,0.5155,True
+shredded coconut,1,coconut;shredded,43,Coconut,0.7175,"Soybean, curd cheese",0.5139,True
+egg,6,egg,129,Eggs,0.921,Guinea hen,0.5135,True
+feta cheese,2,cheese;feta,358,"Cheese, feta",0.8721,Fructose,0.5131,True
+ground cinnamon,1,cinnamon;ground,100,"Spices, cinnamon, ground",0.748,"Spices, garlic powder",0.513,True
+cooking spray,1,cooking;spray,23,"Oil, PAM cooking spray, original",0.6854,Baking powder,0.513,True
+miso,4,miso,4,Miso,1.0,Taro,0.5124,True
+coriander seed,3,coriander;seed,194,Coriander seed,1.0,"Cranberry bush berries, raw (Viburnum opulus L.)",0.5123,True
+kohlrabi,1,kohlrabi,2,Kohlrabi,1.0,Napa cabbage,0.5118,True
+honey,1,honey,58,Honey,1.0,Whey,0.5116,True
+black bean,3,bean;black,282,Bean,0.7301,Chickpea,0.5108,True
+couscous,1,couscou;couscous,2,Couscous,1.0,Coriander,0.5107,True
+cake mix,1,cake;mix,374,Cake,0.7792,Baking powder,0.5102,True
+masa harina,1,harina;masa,7,Cassava,0.51,Cassava,0.51,True
+sushi vinegar,1,sushi;vinegar,11,"Vinegar, cider",0.6152,"Fish pudding, raw",0.5097,True
+oil,4,oil,210,"Oil, corn",0.7591,"Animal fat, bacon grease",0.5087,True
+feta,3,feta,4,"Cheese, feta",0.6797,Peach,0.5086,True
+fajita seasoning mix,1,fajita;mix;seasoning,290,"Flan, caramel custard, dry mix",0.5622,"Beans, fava, in pod, raw",0.5079,True
+fat,1,fat,720,"Fat, duck",0.757,"Fast foods, coleslaw",0.5056,True
+beef sirloin,1,beef;sirloin,517,"Beef, sirloin, raw",0.8655,Beer,0.5055,True
+lemon zest,1,lemon;zest,88,Lemon,0.8136,"Ginger, wild (Zingiber zerumbet)",0.5054,True
+onion soup mix,1,mix;onion;soup,805,"Soup, onion, dry, mix",0.8265,"Salad dressing, mayonnaise type, regular, with salt",0.5039,True
+swiss chard,1,chard;swiss,18,Swiss chard,1.0,European chestnut,0.5035,True
+barenfang honey liqueur,1,barenfang;honey;liqueur,70,"Melon, honeydew, raw",0.5656,"Raisin , seedless",0.503,True
+chow mein noodle,2,chow;mein;noodle,84,"Noodles, chinese, chow mein",0.7613,Chinese mustard,0.5002,True
+ravioli filling,1,filling;ravioli,34,"Ravioli, cheese-filled, canned",0.7934,Vegetarian fillets,0.5002,True
+artichoke,2,artichoke,6,"Artichoke, raw",0.8746,Nectarine,0.4982,True
+channa dal,1,channa;dal,3,Cassava,0.4939,Cassava,0.4939,True
+turnip,2,turnip,10,Turnip,1.0,Parsnip,0.4912,True
+seed,1,seed,191,"Seeds, flaxseed",0.6685,Eggs,0.4912,True
+cilantro stem and root,1,cilantro;root;stem,25,"Coriander (cilantro) leaves, raw",0.5706,"Coriander, leaf, raw",0.4903,True
+elbow macaroni,1,elbow;macaroni,23,"Macaroni, spaghetti, raw",0.5865,Pasta,0.4903,True
+asparagus,1,asparagu;asparagus,14,Asparagus,1.0,Sorghum,0.4895,True
+cheddar cheese soup,1,cheddar;cheese;soup,853,"Cheese, cheddar",0.7692,Cracker meal,0.4888,True
+hot roll mix,1,hot;mix;roll,397,"Rolls, hamburger or hotdog, mixed-grain",0.6037,"Margarine-like spread, SMART BEAT Smart Squeeze",0.4887,True
+wonton wrapper,1,wonton;wrapper,2,Wonton wrappers (includes egg roll wrappers),0.8221,"WORTHINGTON Prosage Roll, frozen, unprepared",0.4883,True
+mashed potato,1,mashed;potato,105,"Sweet potato, canned, mashed",0.715,Baby food,0.4879,True
+plantain,1,plantain,5,"Plantains, raw",0.7768,Eggplant,0.4877,True
+jalapeno,3,jalapeno,5,"Peppers, jalapeno, raw",0.6808,Jostaberry,0.4865,True
+sliced kiwi,1,kiwi;sliced,25,Kiwi,0.7149,Horned melon (Kiwano),0.4861,True
+lard,1,lard,10,Lard,1.0,"Cheese, cottage, creamed, large or small curd",0.4855,True
+noodle,2,noodle,57,"Noodles, japanese, somen, dry",0.672,Lingonberry,0.4853,True
+top ramen,1,ramen;top,106,"Soup, ramen noodle, chicken flavor, dry",0.5737,"Restaurant, Chinese, chicken chow mein",0.4838,True
+amber rum,1,amber;rum,42,Rum,0.6419,Beer,0.4828,True
+ragu,1,ragu,14,Taro,0.4796,Taro,0.4796,True
+cheese spread,1,cheese;spread,402,"Cheese spread, cream cheese base",0.8434,Salad dressing,0.4741,True
+pomegranate seeds,1,pomegranate;seed;seeds,196,Pomegranate,0.8824,"Wheat, sprouted",0.4714,True
+wasabi,1,wasabi,2,Wasabi,1.0,"Kohlrabi, raw",0.4713,True
+apple schnapps,1,apple;schnapp;schnapps,177,Apple,0.6562,Cocoa bean,0.4705,True
+cheddar cheese,2,cheddar;cheese,365,"Cheese, cheddar",0.8439,"Crackers, milk",0.4702,True
+tzatziki,1,tzatziki,0,Tempeh,0.4624,Tempeh,0.4624,True
+mirin,1,mirin,0,Rapini,0.4534,Rapini,0.4534,True
+dry vermouth,1,dry;vermouth,328,"Vermouth, dry",0.8754,"Alcoholic beverage, whiskey sour, prepared from item 14028",0.4421,True
+clam,1,clam,23,"Clam and tomato juice, canned",0.5815,Molasses,0.44,True
+anchovy,1,anchovy,4,"Anchovy, pickled, canned",0.7082,Chicory,0.4333,True
+urad dal,1,dal;urad,3,Guava,0.4238,Guava,0.4238,True
+rennet,1,rennet,0,Port,0.4093,Port,0.4093,True

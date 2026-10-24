@@ -1,0 +1,145 @@
+queries,family,method,model,w,top1,top3,mrr,top1_changed
+clean,string,Jaro–Winkler,,,71.5,81.0,0.7737440182353535,
+clean,string,Token-set ratio,,,89.5,95.0,0.9218270420842626,
+clean,string,TF-IDF char 3–5-grams,,,94.5,97.5,0.9603384115884116,
+typo-0,string,Jaro–Winkler,,,57.99999999999999,73.0,0.6702127910016259,57.6530612244898
+typo-0,string,Token-set ratio,,,70.0,81.5,0.7689885542140018,69.89795918367348
+typo-0,string,TF-IDF char 3–5-grams,,,69.5,81.0,0.7632084944983152,69.38775510204081
+typo-1,string,Jaro–Winkler,,,62.5,75.0,0.6982817001215605,62.244897959183675
+typo-1,string,Token-set ratio,,,69.5,83.0,0.7685177277264524,69.38775510204081
+typo-1,string,TF-IDF char 3–5-grams,,,73.5,80.5,0.7839631251623519,73.46938775510205
+typo-2,string,Jaro–Winkler,,,61.5,73.5,0.6890189946002097,61.224489795918366
+typo-2,string,Token-set ratio,,,68.0,80.0,0.7536075340738151,67.85714285714286
+typo-2,string,TF-IDF char 3–5-grams,,,72.5,80.5,0.7775291362381328,72.44897959183673
+typo-3,string,Jaro–Winkler,,,63.0,77.0,0.7075797797445148,62.755102040816325
+typo-3,string,Token-set ratio,,,70.5,83.5,0.7780655758131586,70.40816326530613
+typo-3,string,TF-IDF char 3–5-grams,,,74.0,85.0,0.7975505658709339,73.9795918367347
+typo-4,string,Jaro–Winkler,,,61.0,71.5,0.6830908812060921,60.71428571428571
+typo-4,string,Token-set ratio,,,68.5,77.5,0.7508499085808522,68.36734693877551
+typo-4,string,TF-IDF char 3–5-grams,,,73.5,81.0,0.7916141918684814,73.46938775510205
+clean,embeddings,Cosine only,all-MiniLM-L6-v2,1.0,98.0,98.0,0.9818037518037518,
+clean,hybrid,w = 0.7 (system weight),all-MiniLM-L6-v2,0.7,98.0,98.0,0.9818507508116884,
+clean,hybrid,w by 5-fold CV,all-MiniLM-L6-v2,0.8/0.8/0.8/0.8/0.8,98.0,98.0,0.9816628787878788,
+typo-0,embeddings,Cosine only,all-MiniLM-L6-v2,1.0,50.0,56.49999999999999,0.5489228880577773,48.97959183673469
+typo-0,hybrid,w = 0.7 (system weight),all-MiniLM-L6-v2,0.7,59.0,67.0,0.6523544114634836,58.16326530612245
+typo-0,hybrid,w by 5-fold CV,all-MiniLM-L6-v2,0.3/0.3/0.3/0.3/0.3,67.0,78.0,0.7471881504424636,66.3265306122449
+typo-1,embeddings,Cosine only,all-MiniLM-L6-v2,1.0,48.5,53.0,0.5287136933998161,47.44897959183674
+typo-1,hybrid,w = 0.7 (system weight),all-MiniLM-L6-v2,0.7,56.49999999999999,66.5,0.6369349209041694,55.61224489795919
+typo-1,hybrid,w by 5-fold CV,all-MiniLM-L6-v2,0.3/0.3/0.3/0.3/0.3,70.5,81.5,0.7719501960158422,69.89795918367348
+typo-2,embeddings,Cosine only,all-MiniLM-L6-v2,1.0,49.5,55.50000000000001,0.5426996462985956,48.46938775510204
+typo-2,hybrid,w = 0.7 (system weight),all-MiniLM-L6-v2,0.7,57.49999999999999,66.5,0.6429576449097232,56.63265306122449
+typo-2,hybrid,w by 5-fold CV,all-MiniLM-L6-v2,0.2/0.3/0.3/0.2/0.4,63.0,76.0,0.7113353430962968,62.244897959183675
+typo-3,embeddings,Cosine only,all-MiniLM-L6-v2,1.0,50.5,56.99999999999999,0.5534926052439479,49.48979591836735
+typo-3,hybrid,w = 0.7 (system weight),all-MiniLM-L6-v2,0.7,63.0,71.0,0.691203450634046,62.244897959183675
+typo-3,hybrid,w by 5-fold CV,all-MiniLM-L6-v2,0.3/0.4/0.3/0.4/0.3,68.5,82.0,0.763960872674986,67.85714285714286
+typo-4,embeddings,Cosine only,all-MiniLM-L6-v2,1.0,46.0,53.0,0.5139735149188397,44.89795918367347
+typo-4,hybrid,w = 0.7 (system weight),all-MiniLM-L6-v2,0.7,55.00000000000001,65.0,0.6243767774181763,54.08163265306123
+typo-4,hybrid,w by 5-fold CV,all-MiniLM-L6-v2,0.4/0.4/0.4/0.4/0.4,68.0,78.5,0.7534739346891152,67.3469387755102
+clean,embeddings,Cosine only,all-mpnet-base-v2,1.0,97.5,98.5,0.9814142857142858,
+clean,hybrid,w = 0.7 (system weight),all-mpnet-base-v2,0.7,97.0,98.0,0.977513888888889,
+clean,hybrid,w by 5-fold CV,all-mpnet-base-v2,0.9/0.9/0.9/0.6/0.9,95.5,98.0,0.9688354978354978,
+typo-0,embeddings,Cosine only,all-mpnet-base-v2,1.0,48.0,56.99999999999999,0.5459255463004371,46.93877551020408
+typo-0,hybrid,w = 0.7 (system weight),all-mpnet-base-v2,0.7,57.99999999999999,70.0,0.6607879402396784,57.14285714285714
+typo-0,hybrid,w by 5-fold CV,all-mpnet-base-v2,0.3/0.4/0.3/0.3/0.3,66.5,78.0,0.7397668420676786,65.81632653061224
+typo-1,embeddings,Cosine only,all-mpnet-base-v2,1.0,49.5,55.50000000000001,0.5422322841401255,48.46938775510204
+typo-1,hybrid,w = 0.7 (system weight),all-mpnet-base-v2,0.7,55.50000000000001,70.0,0.6466316504184093,54.59183673469388
+typo-1,hybrid,w by 5-fold CV,all-mpnet-base-v2,0.2/0.2/0.4/0.2/0.4,67.5,79.5,0.7461085740157753,66.83673469387756
+typo-2,embeddings,Cosine only,all-mpnet-base-v2,1.0,48.5,56.00000000000001,0.5420822159906246,47.44897959183674
+typo-2,hybrid,w = 0.7 (system weight),all-mpnet-base-v2,0.7,56.00000000000001,69.5,0.6435892045874518,55.10204081632652
+typo-2,hybrid,w by 5-fold CV,all-mpnet-base-v2,0.2/0.5/0.5/0.5/0.5,64.5,73.5,0.7108092198843033,63.775510204081634
+typo-3,embeddings,Cosine only,all-mpnet-base-v2,1.0,49.5,58.5,0.5561448775032919,48.46938775510204
+typo-3,hybrid,w = 0.7 (system weight),all-mpnet-base-v2,0.7,59.0,71.5,0.6758042333243702,58.16326530612245
+typo-3,hybrid,w by 5-fold CV,all-mpnet-base-v2,0.3/0.5/0.3/0.3/0.5,67.0,84.0,0.7606473917280376,66.3265306122449
+typo-4,embeddings,Cosine only,all-mpnet-base-v2,1.0,45.5,52.0,0.5131975735796123,44.38775510204081
+typo-4,hybrid,w = 0.7 (system weight),all-mpnet-base-v2,0.7,56.49999999999999,65.5,0.632538221185789,55.61224489795919
+typo-4,hybrid,w by 5-fold CV,all-mpnet-base-v2,0.2/0.2/0.4/0.2/0.5,64.5,76.0,0.7204918733740776,63.775510204081634
+clean,embeddings,Cosine only,BAAI/bge-small-en-v1.5,1.0,99.0,99.5,0.9917142857142858,
+clean,hybrid,w = 0.7 (system weight),BAAI/bge-small-en-v1.5,0.7,96.0,98.0,0.9729496268656718,
+clean,hybrid,w by 5-fold CV,BAAI/bge-small-en-v1.5,1.0/0.9/1.0/1.0/1.0,98.5,99.5,0.9892528735632184,
+typo-0,embeddings,Cosine only,BAAI/bge-small-en-v1.5,1.0,49.0,57.49999999999999,0.5483358079090985,47.95918367346938
+typo-0,hybrid,w = 0.7 (system weight),BAAI/bge-small-en-v1.5,0.7,63.0,78.5,0.7212068962291207,62.244897959183675
+typo-0,hybrid,w by 5-fold CV,BAAI/bge-small-en-v1.5,0.5/0.5/0.5/0.5/0.5,69.0,80.0,0.761591939800453,68.36734693877551
+typo-1,embeddings,Cosine only,BAAI/bge-small-en-v1.5,1.0,48.0,56.99999999999999,0.5377601105085035,46.93877551020408
+typo-1,hybrid,w = 0.7 (system weight),BAAI/bge-small-en-v1.5,0.7,63.0,79.0,0.7181584669358904,62.244897959183675
+typo-1,hybrid,w by 5-fold CV,BAAI/bge-small-en-v1.5,0.6/0.6/0.6/0.6/0.6,71.0,80.5,0.769988051490258,70.40816326530613
+typo-2,embeddings,Cosine only,BAAI/bge-small-en-v1.5,1.0,47.5,54.50000000000001,0.5304348254310679,46.42857142857143
+typo-2,hybrid,w = 0.7 (system weight),BAAI/bge-small-en-v1.5,0.7,61.5,78.0,0.7095430802163747,60.71428571428571
+typo-2,hybrid,w by 5-fold CV,BAAI/bge-small-en-v1.5,0.2/0.5/0.5/0.5/0.5,63.5,76.5,0.7183881800005609,63.26530612244898
+typo-3,embeddings,Cosine only,BAAI/bge-small-en-v1.5,1.0,54.50000000000001,59.0,0.583159901405875,53.57142857142857
+typo-3,hybrid,w = 0.7 (system weight),BAAI/bge-small-en-v1.5,0.7,66.0,80.5,0.7475758949602016,65.3061224489796
+typo-3,hybrid,w by 5-fold CV,BAAI/bge-small-en-v1.5,0.4/0.4/0.4/0.4/0.4,68.5,83.5,0.7718069225165334,67.85714285714286
+typo-4,embeddings,Cosine only,BAAI/bge-small-en-v1.5,1.0,46.5,53.0,0.5172680843319871,45.40816326530612
+typo-4,hybrid,w = 0.7 (system weight),BAAI/bge-small-en-v1.5,0.7,63.0,77.0,0.7082764351522178,62.244897959183675
+typo-4,hybrid,w by 5-fold CV,BAAI/bge-small-en-v1.5,0.4/0.6/0.4/0.5/0.5,63.5,78.5,0.7248293153693982,62.755102040816325
+clean,embeddings,Cosine only,BAAI/bge-base-en-v1.5,1.0,97.0,99.5,0.981,
+clean,hybrid,w = 0.7 (system weight),BAAI/bge-base-en-v1.5,0.7,95.5,98.0,0.9685119047619049,
+clean,hybrid,w by 5-fold CV,BAAI/bge-base-en-v1.5,0.9/0.8/1.0/0.8/0.9,96.5,98.5,0.9771309523809524,
+typo-0,embeddings,Cosine only,BAAI/bge-base-en-v1.5,1.0,51.0,56.49999999999999,0.5583210457736049,50.0
+typo-0,hybrid,w = 0.7 (system weight),BAAI/bge-base-en-v1.5,0.7,63.5,78.0,0.7250610325385705,62.755102040816325
+typo-0,hybrid,w by 5-fold CV,BAAI/bge-base-en-v1.5,0.4/0.4/0.4/0.4/0.4,69.5,80.0,0.7663540038347514,68.87755102040816
+typo-1,embeddings,Cosine only,BAAI/bge-base-en-v1.5,1.0,50.0,55.50000000000001,0.5488032782065182,48.97959183673469
+typo-1,hybrid,w = 0.7 (system weight),BAAI/bge-base-en-v1.5,0.7,68.0,79.5,0.7523536809189486,67.3469387755102
+typo-1,hybrid,w by 5-fold CV,BAAI/bge-base-en-v1.5,0.6/0.6/0.6/0.6/0.6,71.5,81.0,0.7771930225341468,70.91836734693877
+typo-2,embeddings,Cosine only,BAAI/bge-base-en-v1.5,1.0,48.5,55.00000000000001,0.5373923734001582,47.44897959183674
+typo-2,hybrid,w = 0.7 (system weight),BAAI/bge-base-en-v1.5,0.7,65.0,78.0,0.7272496844256249,64.28571428571429
+typo-2,hybrid,w by 5-fold CV,BAAI/bge-base-en-v1.5,0.2/0.4/0.5/0.5/0.4,64.0,76.0,0.718470922807592,63.775510204081634
+typo-3,embeddings,Cosine only,BAAI/bge-base-en-v1.5,1.0,54.0,60.5,0.5895937924390374,53.06122448979592
+typo-3,hybrid,w = 0.7 (system weight),BAAI/bge-base-en-v1.5,0.7,66.0,82.0,0.7447940486041866,65.3061224489796
+typo-3,hybrid,w by 5-fold CV,BAAI/bge-base-en-v1.5,0.6/0.5/0.4/0.5/0.6,67.0,84.5,0.7656180705245572,66.3265306122449
+typo-4,embeddings,Cosine only,BAAI/bge-base-en-v1.5,1.0,46.5,53.5,0.5200825901346388,45.40816326530612
+typo-4,hybrid,w = 0.7 (system weight),BAAI/bge-base-en-v1.5,0.7,63.0,76.5,0.7124858369659753,62.244897959183675
+typo-4,hybrid,w by 5-fold CV,BAAI/bge-base-en-v1.5,0.4/0.6/0.4/0.4/0.6,65.0,79.0,0.7330491802168018,64.28571428571429
+clean,embeddings,Cosine only,intfloat/e5-base-v2,1.0,97.5,99.5,0.9848809523809524,
+clean,hybrid,w = 0.7 (system weight),intfloat/e5-base-v2,0.7,91.5,93.5,0.933336403114705,
+clean,hybrid,w by 5-fold CV,intfloat/e5-base-v2,1.0/0.9/1.0/0.9/1.0,96.0,98.5,0.9746309523809523,
+typo-0,embeddings,Cosine only,intfloat/e5-base-v2,1.0,54.50000000000001,63.5,0.6071854085194209,53.57142857142857
+typo-0,hybrid,w = 0.7 (system weight),intfloat/e5-base-v2,0.7,68.0,79.5,0.7577678380300086,67.3469387755102
+typo-0,hybrid,w by 5-fold CV,intfloat/e5-base-v2,0.7/0.8/0.8/0.8/0.7,66.0,77.5,0.7383052342461138,65.3061224489796
+typo-1,embeddings,Cosine only,intfloat/e5-base-v2,1.0,51.5,60.5,0.5744243492051337,50.51020408163265
+typo-1,hybrid,w = 0.7 (system weight),intfloat/e5-base-v2,0.7,72.0,80.0,0.7786582464409642,71.42857142857143
+typo-1,hybrid,w by 5-fold CV,intfloat/e5-base-v2,0.6/0.6/0.7/0.6/0.7,71.0,81.5,0.7735880079471978,70.40816326530613
+typo-2,embeddings,Cosine only,intfloat/e5-base-v2,1.0,52.0,57.99999999999999,0.575936771972535,51.02040816326531
+typo-2,hybrid,w = 0.7 (system weight),intfloat/e5-base-v2,0.7,68.0,79.0,0.7593476231325264,67.3469387755102
+typo-2,hybrid,w by 5-fold CV,intfloat/e5-base-v2,0.5/0.8/0.7/0.7/0.8,64.0,77.0,0.7240275390468941,63.775510204081634
+typo-3,embeddings,Cosine only,intfloat/e5-base-v2,1.0,58.5,67.5,0.6426554321728917,57.6530612244898
+typo-3,hybrid,w = 0.7 (system weight),intfloat/e5-base-v2,0.7,72.0,85.5,0.7977176159568677,71.42857142857143
+typo-3,hybrid,w by 5-fold CV,intfloat/e5-base-v2,0.8/0.8/0.8/0.8/0.8,74.0,86.0,0.8088613595737509,73.46938775510205
+typo-4,embeddings,Cosine only,intfloat/e5-base-v2,1.0,51.0,57.99999999999999,0.5714422926012108,50.0
+typo-4,hybrid,w = 0.7 (system weight),intfloat/e5-base-v2,0.7,68.0,81.0,0.7589428811709308,67.3469387755102
+typo-4,hybrid,w by 5-fold CV,intfloat/e5-base-v2,0.6/0.8/0.7/0.7/0.7,65.5,81.0,0.7436772121616169,64.79591836734694
+clean,embeddings,Cosine only,intfloat/multilingual-e5-base,1.0,91.0,98.5,0.9453191000918274,
+clean,hybrid,w = 0.7 (system weight),intfloat/multilingual-e5-base,0.7,84.5,91.5,0.8917832992171227,
+clean,hybrid,w by 5-fold CV,intfloat/multilingual-e5-base,0.9/0.9/1.0/0.9/0.9,90.5,96.5,0.9366988500109004,
+typo-0,embeddings,Cosine only,intfloat/multilingual-e5-base,1.0,74.0,81.5,0.7901636289377899,73.46938775510205
+typo-0,hybrid,w = 0.7 (system weight),intfloat/multilingual-e5-base,0.7,69.5,84.5,0.7848682531531316,68.87755102040816
+typo-0,hybrid,w by 5-fold CV,intfloat/multilingual-e5-base,0.8/0.9/0.9/0.9/1.0,71.5,83.5,0.7852370671366709,70.91836734693877
+typo-1,embeddings,Cosine only,intfloat/multilingual-e5-base,1.0,73.5,83.0,0.796559908598375,72.95918367346938
+typo-1,hybrid,w = 0.7 (system weight),intfloat/multilingual-e5-base,0.7,72.5,84.5,0.7989834018052372,71.93877551020408
+typo-1,hybrid,w by 5-fold CV,intfloat/multilingual-e5-base,0.8/0.8/0.8/0.8/0.8,76.5,85.0,0.8244532822501306,76.0204081632653
+typo-2,embeddings,Cosine only,intfloat/multilingual-e5-base,1.0,71.0,80.5,0.7735940643396378,70.40816326530613
+typo-2,hybrid,w = 0.7 (system weight),intfloat/multilingual-e5-base,0.7,68.5,82.5,0.7681422065106167,67.85714285714286
+typo-2,hybrid,w by 5-fold CV,intfloat/multilingual-e5-base,0.9/0.9/0.9/0.9/0.9,73.5,83.5,0.8029186399105988,72.95918367346938
+typo-3,embeddings,Cosine only,intfloat/multilingual-e5-base,1.0,78.0,85.0,0.8309088898228434,77.55102040816327
+typo-3,hybrid,w = 0.7 (system weight),intfloat/multilingual-e5-base,0.7,72.0,87.5,0.8019648268375593,71.42857142857143
+typo-3,hybrid,w by 5-fold CV,intfloat/multilingual-e5-base,1.0/1.0/0.9/1.0/1.0,77.0,85.5,0.8278440969337372,76.53061224489795
+typo-4,embeddings,Cosine only,intfloat/multilingual-e5-base,1.0,74.5,83.0,0.7952596286460887,73.9795918367347
+typo-4,hybrid,w = 0.7 (system weight),intfloat/multilingual-e5-base,0.7,68.0,83.5,0.7696796497459613,67.3469387755102
+typo-4,hybrid,w by 5-fold CV,intfloat/multilingual-e5-base,1.0/0.9/1.0/0.9/0.9,72.5,84.0,0.7938811856804945,71.93877551020408
+clean,embeddings,Cosine only,AI2Cuisine,1.0,94.5,96.0,0.9530095145167314,
+clean,hybrid,w = 0.7 (system weight),AI2Cuisine,0.7,89.0,93.0,0.916110394355325,
+clean,hybrid,w by 5-fold CV,AI2Cuisine,1.0/1.0/1.0/1.0/1.0,94.5,96.0,0.9530095145167314,
+typo-0,embeddings,Cosine only,AI2Cuisine,1.0,37.0,39.0,0.38795032747343733,35.714285714285715
+typo-0,hybrid,w = 0.7 (system weight),AI2Cuisine,0.7,48.0,56.00000000000001,0.5415963866714235,46.93877551020408
+typo-0,hybrid,w by 5-fold CV,AI2Cuisine,0.2/0.2/0.3/0.3/0.4,57.99999999999999,74.0,0.6727675475104499,57.6530612244898
+typo-1,embeddings,Cosine only,AI2Cuisine,1.0,34.5,37.5,0.36550894147289936,33.16326530612245
+typo-1,hybrid,w = 0.7 (system weight),AI2Cuisine,0.7,42.5,54.0,0.5008150538008765,41.3265306122449
+typo-1,hybrid,w by 5-fold CV,AI2Cuisine,0.1/0.1/0.1/0.1/0.2,64.0,78.5,0.7145429460248494,63.775510204081634
+typo-2,embeddings,Cosine only,AI2Cuisine,1.0,35.0,36.5,0.36743851094314633,33.6734693877551
+typo-2,hybrid,w = 0.7 (system weight),AI2Cuisine,0.7,48.0,56.49999999999999,0.5417023597787398,46.93877551020408
+typo-2,hybrid,w by 5-fold CV,AI2Cuisine,0.3/0.1/0.3/0.3/0.1,62.0,74.5,0.6972699343929665,61.73469387755102
+typo-3,embeddings,Cosine only,AI2Cuisine,1.0,40.5,41.5,0.4212195679727898,39.285714285714285
+typo-3,hybrid,w = 0.7 (system weight),AI2Cuisine,0.7,51.5,59.5,0.5745264073036892,50.51020408163265
+typo-3,hybrid,w by 5-fold CV,AI2Cuisine,0.3/0.1/0.3/0.1/0.3,63.0,78.5,0.7180784335088317,62.755102040816325
+typo-4,embeddings,Cosine only,AI2Cuisine,1.0,35.0,37.0,0.37163672632557376,33.6734693877551
+typo-4,hybrid,w = 0.7 (system weight),AI2Cuisine,0.7,43.0,56.00000000000001,0.5141704254457486,41.83673469387755
+typo-4,hybrid,w by 5-fold CV,AI2Cuisine,0.3/0.3/0.3/0.3/0.3,64.5,75.5,0.7094137926461848,64.28571428571429

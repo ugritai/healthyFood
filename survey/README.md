@@ -12,7 +12,7 @@ sessions or instances).
 ```
 survey/
 ├── app.py                       # Main Streamlit app
-├── items.csv                    # Item pool with block assignments (sample data — replace with the real pool)
+├── items.csv                    # Item pool with block assignments (sample data - replace with the real pool)
 ├── requirements.txt             # App dependencies
 ├── .streamlit/
 │   └── secrets.toml.example     # Template for local secrets (copy to secrets.toml, do not commit the real one)
@@ -48,17 +48,17 @@ own. `relation_text_es` is a Spanish translation, highlighted below it.
 - `link` may be empty (all `aging` items have real citations now, via
   Tessier et al. 2025; only if you add new rows without a source should
   citation/link be left blank rather than fabricated).
-- `block_id` determines which respondents see which items — assign block
+- `block_id` determines which respondents see which items - assign block
   numbers so that each sub-group of students gets a distinct `?block=N`
   link and no one is expected to rate the entire pool.
 
 The included `items.csv` is a **real 80-item pool** (4 blocks of 20: 10
 disease + 5 cooking_method + 5 aging each) extracted directly from the
-project's Neo4j graph — see the git history for how each type was sourced
+project's Neo4j graph - see the git history for how each type was sourced
 and what citations back it. Regenerate or replace it as the real study
 design evolves.
 
-## 1b. `ingredient_matches.csv` — the extra task
+## 1b. `ingredient_matches.csv` - the extra task
 
 A short, separate task shown after the main items, evaluating a
 different part of the system: whether the automatic matching of a
@@ -70,7 +70,7 @@ matched_food, score`. Sourced from real evaluation output
 It's rotated by block like the main items, but asymmetrically: the whole
 evaluation dataset only contains a handful of known-incorrect matches
 (there simply aren't more in the real data), so the same 3 (`M02`-`M04`)
-repeat in every block — otherwise "covering more cases" would mean
+repeat in every block - otherwise "covering more cases" would mean
 inventing fake errors. Each block then adds 5 *different* correct
 matches (`M05`-`M24`, 20 unique across the 4 blocks) spanning a range of
 food groups and similarity scores, so the correct-match coverage is
@@ -88,14 +88,14 @@ https://<your-app>.streamlit.app/?block=3
 The app reads the `block` query parameter and filters `items.csv` to
 `block_id == block`. If the parameter is missing or doesn't match any
 block, the app shows a short landing screen asking the respondent to use
-their assigned link — it never guesses or randomly assigns a block. Block
+their assigned link - it never guesses or randomly assigns a block. Block
 links must be distributed manually to each sub-group of students.
 
 ## 3. Setting up the Google Sheet + service account
 
 1. **Create the Google Sheet** that will store responses. Note its exact
-   name (or switch the app to open by key/ID — see the note in `app.py`
-   where `SPREADSHEET_NAME` is defined). No worksheet setup is required — the app creates both the
+   name (or switch the app to open by key/ID - see the note in `app.py`
+   where `SPREADSHEET_NAME` is defined). No worksheet setup is required - the app creates both the
    `responses` worksheet (main items) and `ingredient_match_responses`
    worksheet (extra task) with their header rows automatically on first
    submission if they don't already exist.
@@ -108,7 +108,7 @@ links must be distributed manually to each sub-group of students.
    - Go to APIs & Services → Credentials → Create Credentials → Service
      Account. Give it any name (e.g. `foodmedkg-survey`).
    - Open the new service account → Keys → Add Key → Create new key →
-     JSON. This downloads a JSON key file — **keep it secret**, it grants
+     JSON. This downloads a JSON key file - **keep it secret**, it grants
      access to anything shared with the service account.
 
 3. **Share the Google Sheet** with the service account: open the Sheet →
@@ -149,7 +149,7 @@ client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/your-s
 universe_domain = "googleapis.com"
 ```
 
-**Never commit `.streamlit/secrets.toml`** — it is already excluded via
+**Never commit `.streamlit/secrets.toml`** - it is already excluded via
 `.gitignore` at the repo root; double-check before pushing.
 
 Update `SPREADSHEET_NAME` in `app.py` to match your real Sheet's name, and
@@ -174,7 +174,7 @@ Then open `http://localhost:8501/?block=1` to test a specific block (block
    `app.py`).
 3. Under **Advanced settings → Secrets**, paste the same contents as your
    local `.streamlit/secrets.toml` (the `[gcp_service_account]` table).
-   This is the production equivalent of the local secrets file — Streamlit
+   This is the production equivalent of the local secrets file - Streamlit
    Community Cloud exposes it to the app as `st.secrets` at runtime.
 4. Deploy. Once live, construct one link per block for distribution, e.g.:
    - `https://<your-app>.streamlit.app/?block=1`
@@ -183,7 +183,7 @@ Then open `http://localhost:8501/?block=1` to test a specific block (block
 
 Streamlit Community Cloud's filesystem is ephemeral and reset on every
 redeploy/restart, and multiple sessions may run on different underlying
-instances — this is why the app never writes to local disk and uses
+instances - this is why the app never writes to local disk and uses
 Google Sheets as the single source of truth for all responses.
 
 ## 6. Running the analysis
@@ -201,8 +201,8 @@ python run_all.py path/to/export.xlsx     # or an explicit file
 
 `run_all.py` writes everything to one place:
 
-- `REPORT.md` — all results in one file, with tables
-- `results/*.csv` — one CSV per table
+- `REPORT.md` - all results in one file, with tables
+- `results/*.csv` - one CSV per table
 
 Each module can also be run on its own (e.g. `python aggregation.py`).
 They split the analysis by what it measures:
@@ -234,10 +234,10 @@ contain real respondent data.
   (`respondent_id`) generated client-side at session start, used only to
   group that session's rows together.
 - Demographic fields collected are: year of study, specialization,
-  gender, age, and level of English — all from closed option lists except
+  gender, age, and level of English - all from closed option lists except
   age (a plain number). No other identifying information is collected.
 - After a successful submit, the app shows a thank-you screen and
   disables the form for that session (via `st.session_state`) to avoid the
   common case of an accidental duplicate submission on page reload. A
   respondent who deliberately opens a fresh session/tab can still submit
-  again — this is accepted as out of scope per the study design.
+  again - this is accepted as out of scope per the study design.

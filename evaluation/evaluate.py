@@ -4,7 +4,7 @@ FoodMedKG Quantitative Evaluation
 ==================================
 Three evaluation components:
 
-  (A) LLM Structured Output Quality  — run for each model listed in --models
+  (A) LLM Structured Output Quality  - run for each model listed in --models
       - JSON validity rate
       - Required field completeness rate
       - Preparation method validity rate
@@ -157,7 +157,7 @@ def compute_f1_soft(
     from sentence_transformers.util import cos_sim
     ext_embs = embed_fn(extracted)
     ref_embs = embed_fn(expected)
-    sim = cos_sim(ext_embs, ref_embs).numpy()          # shape (n_ext, n_ref)
+    sim = cos_sim(ext_embs, ref_embs).cpu().numpy()    # shape (n_ext, n_ref); .cpu() for GPU (e.g. Apple MPS)
     tp_ext = sum(1 for i in range(len(extracted)) if sim[i].max() >= threshold)
     tp_ref = sum(1 for j in range(len(expected))  if sim[:, j].max() >= threshold)
     precision = tp_ext / len(extracted)
@@ -182,7 +182,7 @@ def compute_f1_soft_best(
 
 
 # ---------------------------------------------------------------------------
-# Part A — LLM Structured Output Quality
+# Part A - LLM Structured Output Quality
 # ---------------------------------------------------------------------------
 
 def evaluate_llm(
@@ -211,7 +211,7 @@ def evaluate_llm(
     embed_fn = (lambda texts: soft_model.encode(texts, convert_to_tensor=True)) if use_soft else None
 
     print(f"\n{'='*62}")
-    print(f"  PART A — LLM Quality  model={model_tag}  ({n} recipes × {runs_per_recipe} run(s))")
+    print(f"  PART A - LLM Quality  model={model_tag}  ({n} recipes × {runs_per_recipe} run(s))")
     if use_soft:
         print(f"  Soft matching enabled  threshold={soft_threshold}")
     print(f"{'='*62}\n")
@@ -265,14 +265,14 @@ def evaluate_llm(
                 if prep_list else 0.0
             )
 
-            # Ingredient coverage — strict (vs. canonical ground truth only)
+            # Ingredient coverage - strict (vs. canonical ground truth only)
             extracted_names = [(ing.get("name") or "").lower() for ing in ingredients if ing.get("name")]
             precision, recall, f1 = compute_f1(extracted_names, expected)
 
-            # Ingredient coverage — flexible (best F1 over all valid variants)
+            # Ingredient coverage - flexible (best F1 over all valid variants)
             _, _, f1_flexible = compute_f1_best(extracted_names, all_refs)
 
-            # Ingredient coverage — soft semantic matching
+            # Ingredient coverage - soft semantic matching
             if use_soft and extracted_names:
                 _, _, f1_soft = compute_f1_soft_best(extracted_names, all_refs, embed_fn, soft_threshold)
             else:
@@ -324,7 +324,7 @@ def print_llm_table(rows: list[dict]) -> None:
     )
     sep = "-" * len(hdr)
     print(f"\n{'='*len(hdr)}")
-    print("  PART A — Results")
+    print("  PART A - Results")
     print(f"{'='*len(hdr)}")
     print(hdr)
     print(sep)
@@ -371,7 +371,7 @@ def print_llm_table(rows: list[dict]) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Part B — Ingredient Matching Accuracy
+# Part B - Ingredient Matching Accuracy
 # ---------------------------------------------------------------------------
 
 def _connect_neo4j(uri: str, user: str, password: str):
@@ -426,7 +426,7 @@ def evaluate_matching(benchmark: dict, driver, top_k: int = 3) -> list[dict]:
     from sentence_transformers import SentenceTransformer
 
     print(f"\n{'='*62}")
-    print(f"  PART B — Ingredient Matching Accuracy  (top-{top_k} window)")
+    print(f"  PART B - Ingredient Matching Accuracy  (top-{top_k} window)")
     print(f"{'='*62}\n")
 
     df = _load_food_df(driver)
@@ -478,7 +478,7 @@ def print_matching_table(rows: list[dict], top_k: int) -> None:
     hdr = f"{'Query':<28} {'Top-1 Match':<32} {'Score':>6} {'T-1':>4} {f'T-{top_k}':>4} {'RR':>6}"
     sep = "-" * len(hdr)
     print(f"\n{'='*62}")
-    print("  PART B — Per-Query Results")
+    print("  PART B - Per-Query Results")
     print(f"{'='*62}")
     print(hdr)
     print(sep)
@@ -506,7 +506,7 @@ def print_matching_table(rows: list[dict], top_k: int) -> None:
 
     if len(groups) > 1:
         print(f"\n{'='*62}")
-        print("  PART B — Per-Group Breakdown")
+        print("  PART B - Per-Group Breakdown")
         print(f"{'='*62}")
         ghdr = f"{'Group':<32} {'N':>4} {'Top-1':>6} {f'Top-{top_k}':>6} {'MRR':>6}"
         print(ghdr)
@@ -526,7 +526,7 @@ def print_matching_table(rows: list[dict], top_k: int) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Part C — KG Disease Association Correctness
+# Part C - KG Disease Association Correctness
 # ---------------------------------------------------------------------------
 
 def evaluate_kg(benchmark: dict, driver) -> list[dict]:
@@ -534,7 +534,7 @@ def evaluate_kg(benchmark: dict, driver) -> list[dict]:
     n = len(ground_truth)
 
     print(f"\n{'='*62}")
-    print(f"  PART C — KG Disease Association Correctness  ({n} triples)")
+    print(f"  PART C - KG Disease Association Correctness  ({n} triples)")
     print(f"{'='*62}\n")
 
     rows = []
@@ -582,13 +582,13 @@ def print_kg_table(rows: list[dict]) -> None:
     hdr = f"{'Food':<22} {'Disease':<32} {'Exp':>5} {'Got':>5} {'OK':>4}"
     sep = "-" * len(hdr)
     print(f"\n{'='*62}")
-    print("  PART C — Results")
+    print("  PART C - Results")
     print(f"{'='*62}")
     print(hdr)
     print(sep)
     for r in rows:
         exp = "T" if r["expected_suitable"] else "F"
-        got = ("T" if r["actual_suitable"] else "F") if r["found"] else "—"
+        got = ("T" if r["actual_suitable"] else "F") if r["found"] else "-"
         ok  = "✓" if r["correct"] else "✗"
         print(f"{r['food']:<22} {r['disease']:<32} {exp:>5} {got:>5} {ok:>4}")
     print(sep)
@@ -670,7 +670,7 @@ def print_model_comparison(llm_results_by_model: dict) -> None:
     if len(llm_results_by_model) < 2:
         return
     print(f"\n{'='*80}")
-    print("  PART A — Model Comparison Summary")
+    print("  PART A - Model Comparison Summary")
     print(f"{'='*80}")
     all_rows_flat = [r for rows in llm_results_by_model.values() for r in rows]
     has_soft = any(r.get("f1_soft", 0) > 0 for r in all_rows_flat)
@@ -749,7 +749,7 @@ def main() -> None:
             soft_model = SentenceTransformer("all-MiniLM-L6-v2")
             print("  Done.\n")
         except ImportError:
-            print("  [WARN] sentence-transformers not installed — soft matching disabled.")
+            print("  [WARN] sentence-transformers not installed - soft matching disabled.")
 
     if not args.skip_llm:
         for model_tag in args.models:

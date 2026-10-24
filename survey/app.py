@@ -1,10 +1,10 @@
 """
-FoodMedKG human evaluation survey — Streamlit app.
+FoodMedKG human evaluation survey - Streamlit app.
 
 A rotating-block survey: each respondent only rates the items assigned to
 the block named in the URL (?block=...). Responses are appended to a
 Google Sheet (worksheet "responses") via a service account, so nothing is
-persisted to local disk — required for Streamlit Community Cloud, whose
+persisted to local disk - required for Streamlit Community Cloud, whose
 filesystem is ephemeral and not shared across sessions/instances.
 """
 
@@ -19,7 +19,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 # --------------------------------------------------------------------------
-# Placeholders — fill these in before real deployment.
+# Placeholders - fill these in before real deployment.
 # --------------------------------------------------------------------------
 
 CONSENT_TEXT = (
@@ -213,7 +213,7 @@ def append_rows_to_worksheet(worksheet, rows: list[list[str]]) -> None:
     Batching keeps well under Google Sheets' per-minute write quota (60
     write requests/minute for a single service account), which is easy to
     trip if every item were appended individually (e.g. 20 items x 40
-    students = 800 calls vs. 40 calls) — this matters here because blocks
+    students = 800 calls vs. 40 calls) - this matters here because blocks
     are rotated across ~40 students who may well submit within the same
     few-minute window.
 
@@ -262,7 +262,7 @@ if "submitted" not in st.session_state:
 
 
 # --------------------------------------------------------------------------
-# Landing screen — shown when no valid block is present in the URL.
+# Landing screen - shown when no valid block is present in the URL.
 # --------------------------------------------------------------------------
 def render_landing_screen():
     st.title("Encuesta de Evaluación FoodMedKG")
@@ -291,7 +291,7 @@ def render_thank_you():
 # --------------------------------------------------------------------------
 def render_survey(block_id: str, block_items: pd.DataFrame, ingredient_matches: pd.DataFrame):
     st.title("Encuesta de Evaluación FoodMedKG")
-    st.caption(f"Bloque {block_id} — {len(block_items)} ítems")
+    st.caption(f"Bloque {block_id} - {len(block_items)} ítems")
 
     with st.form("survey_form", clear_on_submit=False):
         # --- Consent + demographic header (shown once, above the items) ---
@@ -377,7 +377,7 @@ def render_survey(block_id: str, block_items: pd.DataFrame, ingredient_matches: 
             if row.get("relation_text_es"):
                 st.info(f"**Traducción:** {row['relation_text_es']}")
             if pd.notna(row.get("link")) and str(row.get("link")).strip():
-                st.markdown(f"[Cita de referencia]({row['link']}) — {row.get('citation', '')}")
+                st.markdown(f"[Cita de referencia]({row['link']}) - {row.get('citation', '')}")
             elif row.get("citation"):
                 st.caption(f"Cita: {row['citation']}")
 
@@ -419,7 +419,7 @@ def render_survey(block_id: str, block_items: pd.DataFrame, ingredient_matches: 
             "Cuando alguien escribe una receta, el sistema intenta emparejar "
             "cada ingrediente con un alimento concreto de la base de datos. "
             "A continuación tienes algunos de esos emparejamientos "
-            "automáticos — indica si te parecen correctos."
+            "automáticos - indica si te parecen correctos."
         )
         match_answers = {}
         for _, match_row in ingredient_matches.iterrows():
@@ -552,7 +552,7 @@ def render_survey(block_id: str, block_items: pd.DataFrame, ingredient_matches: 
     except Exception as exc:  # noqa: BLE001 - surface any Sheets/auth error to the user
         st.error(
             "Ha habido un problema al guardar tus respuestas. Por favor, "
-            "no cierres esta pestaña — contacta con el equipo del estudio "
+            "no cierres esta pestaña - contacta con el equipo del estudio "
             f"indicando este error: {exc}"
         )
         return

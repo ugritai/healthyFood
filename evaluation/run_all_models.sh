@@ -6,26 +6,33 @@
 #
 # Full run (nohup):
 #   nohup bash run_all_models.sh > nohup_all.log 2>&1 &
+#
+# Write somewhere other than results/ (e.g. to compare with a previous run):
+#   RESULTS_ROOT=results/rerun bash run_all_models.sh
 
 set -euo pipefail
 
-PYTHON="../healthyfood_env/bin/python"
+# Laptop venv if present, otherwise the server's
+if [[ -x ../.venv/bin/python ]]; then PYTHON="../.venv/bin/python"; else PYTHON="../healthyfood_env/bin/python"; fi
 SOFT_THRESHOLD="0.75"
+RESULTS_ROOT="${RESULTS_ROOT:-results}"
 
+# The five models reported in the paper (Sec. 5)
 MODELS=(
     "llama3.1:8b-instruct-q8_0"
     "qwen3:8b-q8_0"
     "gemma2:9b-instruct-q8_0"
     "mistral:7b-instruct-q8_0"
-    "deepseek-r1:8b-q8_0"
-    "olmo2:7b-instruct-q8_0"
-    "cogito:8b-v0.1-llama3"
     "dolphin-llama3:8b-v2.9-q8_0"
+    # Also tried, not reported:
+    # "deepseek-r1:8b-q8_0"
+    # "olmo2:7b-instruct-q8_0"
+    # "cogito:8b-v0.1-llama3"
 )
 
 BATCHES=(
-    "benchmark.json|results/batch1|15 recipes"
-    "benchmark_batch2.json|results/batch2|35 recipes"
+    "benchmark.json|$RESULTS_ROOT/batch1|15 recipes"
+    "benchmark_batch2.json|$RESULTS_ROOT/batch2|35 recipes"
 )
 
 MAX_RECIPES_ARG=""
@@ -34,10 +41,10 @@ if [[ "${1:-}" == "--test" ]]; then
     echo "  [TEST MODE] Running 1 recipe per model per batch."
 fi
 
-mkdir -p results/batch1 results/batch2
+mkdir -p "$RESULTS_ROOT/batch1" "$RESULTS_ROOT/batch2"
 
 echo "============================================================"
-echo "  FoodMedKG — Full LLM Evaluation (both batches)"
+echo "  FoodMedKG - Full LLM Evaluation (both batches)"
 echo "  $(date '+%Y-%m-%d %H:%M:%S')"
 echo "  Soft threshold : $SOFT_THRESHOLD"
 echo "  Models         : ${#MODELS[@]}"
@@ -53,7 +60,7 @@ for MODEL in "${MODELS[@]}"; do
     if ! ollama list | grep -q "^${MODEL} "; then
         echo "  [PULL] Downloading $MODEL ..."
         if ! ollama pull "$MODEL"; then
-            echo "  [WARN] Pull failed for $MODEL — skipping."
+            echo "  [WARN] Pull failed for $MODEL - skipping."
             continue
         fi
     else
@@ -77,14 +84,14 @@ for MODEL in "${MODELS[@]}"; do
                 --save-csv "$RESULTS_DIR/" \
                 --runs 1 \
                 $MAX_RECIPES_ARG; then
-            echo "  [DONE] $MODEL / $BENCHMARK — $(date '+%H:%M:%S')"
+            echo "  [DONE] $MODEL / $BENCHMARK - $(date '+%H:%M:%S')"
         else
-            echo "  [ERR ] $MODEL / $BENCHMARK failed — continuing."
+            echo "  [ERR ] $MODEL / $BENCHMARK failed - continuing."
         fi
     done
 done
 
 echo ""
 echo "============================================================"
-echo "  All models & batches processed — $(date '+%Y-%m-%d %H:%M:%S')"
+echo "  All models & batches processed - $(date '+%Y-%m-%d %H:%M:%S')"
 echo "============================================================"

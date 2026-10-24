@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FoodMedKG — Evaluation Visualisations
+FoodMedKG - Evaluation Visualisations
 ======================================
 Generates paper-ready figures for all three evaluation parts.
 
@@ -22,6 +22,9 @@ import matplotlib.gridspec as gridspec
 import numpy as np
 import pandas as pd
 from scipy.stats import gaussian_kde
+
+# Acceptance threshold of the ingredient matcher (Sec. 5.2; see linking/threshold_curve.py)
+LINKING_TAU = 0.68
 
 # ── Global style ──────────────────────────────────────────────────────────────
 plt.rcParams.update({
@@ -218,7 +221,7 @@ def fig_a_scatter_extraction(df: pd.DataFrame, out: Path, model: str) -> None:
     plt.colorbar(sc, ax=ax, label="F1 Score", fraction=0.04, pad=0.02)
     ax.set_xlabel("Expected ingredients (ground truth)")
     ax.set_ylabel("Extracted ingredients (LLM)")
-    ax.set_title(f"Part A — Extraction Count vs Ground Truth  [{model}]",
+    ax.set_title(f"Part A - Extraction Count vs Ground Truth  [{model}]",
                  fontsize=16, fontweight="bold")
     ax.legend(fontsize=12, frameon=False)
     fig.tight_layout()
@@ -251,7 +254,7 @@ def fig_a_model_comparison(dfs: dict[str, pd.DataFrame], out: Path) -> None:
     ax.set_ylabel("Score (%)")
     ax.set_ylim(0, 115)
     ax.axhline(100, color="gray", linestyle="--", linewidth=0.8, alpha=0.4)
-    ax.set_title("Part A — LLM Model Comparison", fontsize=18, fontweight="bold")
+    ax.set_title("Part A - LLM Model Comparison", fontsize=18, fontweight="bold")
     ax.legend(fontsize=14, loc="lower right")
     fig.tight_layout()
     _save(fig, out)
@@ -335,9 +338,9 @@ def fig_b_score_violin_by_group(df: pd.DataFrame, out: Path) -> None:
     ax.set_xticklabels(groups, rotation=38, ha="right", fontsize=14)
     ax.set_ylabel("Matching score")
     ax.set_ylim(0.3, 1.05)
-    ax.axhline(0.75, color="gray", linestyle="--", linewidth=0.8,
-               alpha=0.5, label="Score = 0.75")
-    ax.set_title("Part B — Matching score Spread per Food Group",
+    ax.axhline(LINKING_TAU, color="gray", linestyle="--", linewidth=0.8,
+               alpha=0.5, label=f"τ = {LINKING_TAU}")
+    ax.set_title("Part B - Matching score Spread per Food Group",
                  fontsize=17, fontweight="bold")
     ax.legend(fontsize=14, frameon=False)
     fig.tight_layout()
@@ -371,7 +374,7 @@ def fig_b_group_accuracy(df_groups: pd.DataFrame, out: Path, top_k: int) -> None
 
 
 def fig_b_group_lollipop(df_groups: pd.DataFrame, out: Path, top_k: int) -> None:
-    """Lollipop chart — Top-1 dot + Top-k recovery, coloured by performance tier."""
+    """Lollipop chart - Top-1 dot + Top-k recovery, coloured by performance tier."""
     from matplotlib.colors import LinearSegmentedColormap
     from matplotlib.lines import Line2D
 
@@ -417,7 +420,7 @@ def fig_b_group_lollipop(df_groups: pd.DataFrame, out: Path, top_k: int) -> None
         ax.plot([mrr, mrr], [i - 0.28, i + 0.28], color=c,
                 linewidth=1.5, alpha=0.6, zorder=3)
 
-        # Value label — in the blank space after 100%
+        # Value label - in the blank space after 100%
         ax.text(101.5, i, f"{t1:.0f}%", va="center", fontsize=13,
                 color=c, fontweight="bold")
 
@@ -434,7 +437,7 @@ def fig_b_group_lollipop(df_groups: pd.DataFrame, out: Path, top_k: int) -> None
     ax.set_title("Ingredient matching accuracy by food group",
                  fontsize=18, fontweight="bold", pad=14)
 
-    # Legend — far bottom left
+    # Legend - far bottom left
     legend_elements = [
         Line2D([0], [0], marker="o", color="w", markerfacecolor="#43A047",
                markersize=10, label="Top-1 Accuracy"),
@@ -539,12 +542,12 @@ def fig_b_group_variety(df: pd.DataFrame, out: Path) -> None:
     ax.set_xlim(0.35, 1.08)
     ax.set_title("Score spread per food group  (sorted by within-group variability)",
                  fontsize=17, fontweight="bold", pad=12)
-    ax.axvline(0.75, color="#BDBDBD", linestyle="--", linewidth=1)
+    ax.axvline(LINKING_TAU, color="#BDBDBD", linestyle="--", linewidth=1)
 
     handles = [
         plt.Line2D([0], [0], marker="X", color=INCORRECT, linestyle="none",
                    markersize=12, label="Incorrect match"),
-        plt.Line2D([0], [0], color="#BDBDBD", linestyle="--", label="Threshold τ=0.75"),
+        plt.Line2D([0], [0], color="#BDBDBD", linestyle="--", label=f"Threshold τ={LINKING_TAU}"),
     ]
     ax.legend(handles=handles, loc="upper center",
               bbox_to_anchor=(0.5, -0.07), ncol=3,
@@ -599,7 +602,7 @@ def fig_b_combined(df_q: pd.DataFrame, df_groups: pd.DataFrame, out: Path) -> No
     ax_box.set_xlabel("Matching score", fontsize=22)
     ax_box.set_xlim(0.44, 1.04)
     ax_box.set_xticks([0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
-    ax_box.axvline(0.75, color="#BDBDBD", linestyle="--", linewidth=1.2)
+    ax_box.axvline(LINKING_TAU, color="#BDBDBD", linestyle="--", linewidth=1.2)
     ax_box.set_title("(A)  Score spread per group", fontsize=22, fontweight="bold", pad=14)
     ax_box.set_yticks(range(n))
     ax_box.set_yticklabels(
@@ -613,7 +616,7 @@ def fig_b_combined(df_q: pd.DataFrame, df_groups: pd.DataFrame, out: Path) -> No
     handles_a = [
         Line2D([0], [0], marker="x", color=INCORRECT, linestyle="none",
                markersize=14, markeredgewidth=2.2, label="Incorrect match"),
-        Line2D([0], [0], color="#BDBDBD", linestyle="--", linewidth=1.5, label="τ = 0.75"),
+        Line2D([0], [0], color="#BDBDBD", linestyle="--", linewidth=1.5, label=f"τ = {LINKING_TAU}"),
     ]
     ax_box.legend(handles=handles_a, loc="upper center",
                   bbox_to_anchor=(0.5, -0.07), ncol=3,
@@ -652,7 +655,7 @@ def fig_b_combined(df_q: pd.DataFrame, df_groups: pd.DataFrame, out: Path) -> No
 def fig_b_intra_variability(df: pd.DataFrame, out: Path) -> None:
     """Dumbbell range chart: min–max score per food concept, sorted by std."""
     if "primary_kw" not in df.columns:
-        print("  [b7] skipping: 'primary_kw' column not in dataframe — run with --benchmark")
+        print("  [b7] skipping: 'primary_kw' column not in dataframe - run with --benchmark")
         return
 
     intra = (
@@ -693,7 +696,7 @@ def fig_b_intra_variability(df: pd.DataFrame, out: Path) -> None:
     ax.legend(handles=legend_handles, loc="lower right", fontsize=10,
               ncol=2, framealpha=0.92, edgecolor="#DDDDDD")
 
-    ax.axvline(0.75, color="#BDBDBD", linestyle="--", linewidth=1, alpha=0.7)
+    ax.axvline(LINKING_TAU, color="#BDBDBD", linestyle="--", linewidth=1, alpha=0.7)
     ax.grid(axis="x", alpha=0.2, linewidth=0.7)
     ax.set_axisbelow(True)
     fig.tight_layout()
@@ -748,14 +751,14 @@ def fig_c_kg_summary(df: pd.DataFrame, out: Path) -> None:
         at.set_fontsize(9)
     axes[1].set_title("Overall KG Correctness", fontsize=16, fontweight="bold")
 
-    fig.suptitle("Part C — Knowledge Graph Disease Association Correctness",
+    fig.suptitle("Part C - Knowledge Graph Disease Association Correctness",
                  fontsize=17, fontweight="bold", y=1.01)
     fig.tight_layout()
     _save(fig, out)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PART A — Extra ingredient analysis
+# PART A - Extra ingredient analysis
 # ══════════════════════════════════════════════════════════════════════════════
 
 def _collect_extras(dfs: "dict[str, pd.DataFrame]") -> "dict[str, list[str]]":
@@ -773,7 +776,7 @@ def _collect_extras(dfs: "dict[str, pd.DataFrame]") -> "dict[str, list[str]]":
 
 
 def fig_a_extra_wordclouds(dfs: "dict[str, pd.DataFrame]", out: Path) -> None:
-    """Word cloud of extra (unmatched) ingredients — one panel per model + combined."""
+    """Word cloud of extra (unmatched) ingredients - one panel per model + combined."""
     from wordcloud import WordCloud
     from collections import Counter
 
@@ -822,7 +825,7 @@ def fig_a_extra_wordclouds(dfs: "dict[str, pd.DataFrame]", out: Path) -> None:
     for ax in axes_flat[n_panels:]:
         ax.set_visible(False)
 
-    fig.suptitle("Part A — Ingredients Extracted by LLMs Not in Ground Truth",
+    fig.suptitle("Part A - Ingredients Extracted by LLMs Not in Ground Truth",
                  fontsize=18, fontweight="bold", y=1.01)
     fig.tight_layout()
     _save(fig, out)
@@ -865,7 +868,7 @@ def fig_a_extra_bar(dfs: "dict[str, pd.DataFrame]", out: Path, top_n: int = 20) 
     cbar.ax.tick_params(labelsize=8)
 
     ax.set_xlabel("Times extracted across all models & recipes")
-    ax.set_title(f"Part A — Top {top_n} Extra Ingredients Not in Ground Truth",
+    ax.set_title(f"Part A - Top {top_n} Extra Ingredients Not in Ground Truth",
                  fontsize=17, fontweight="bold")
     ax.set_xlim(0, max(counts) * 1.25)
     for spine in ["top", "right"]:
@@ -1090,7 +1093,7 @@ def main() -> None:
     print(f"\nReading from : {', '.join(str(r) for r in result_dirs)}")
     print(f"Writing to   : {out}/\n")
 
-    # ── Part A — merge across all result dirs ─────────────────────────────────
+    # ── Part A - merge across all result dirs ─────────────────────────────────
     llm_dfs = _load_and_merge_llm_csvs(result_dirs)
 
     for model, df in llm_dfs.items():
@@ -1110,9 +1113,9 @@ def main() -> None:
         fig_a_model_comparison(llm_dfs, out / f"a3_model_comparison.{fmt}")
         fig_a_f1_boxplot(llm_dfs,       out / f"a4_f1_boxplot.{fmt}")
     elif len(llm_dfs) == 1:
-        print("  (only 1 model — skipping model comparison charts)")
+        print("  (only 1 model - skipping model comparison charts)")
 
-    # ── Part B/C — first dir that has the files ───────────────────────────────
+    # ── Part B/C - first dir that has the files ───────────────────────────────
     def _find(filename: str) -> "Path | None":
         for d in result_dirs:
             p = d / filename

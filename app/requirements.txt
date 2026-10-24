@@ -1,8 +1,13 @@
-streamlit
-pandas
-sentence-transformers
-scikit-learn
-numpy
-neo4j
-langchain
-langchain-ollama
+# Python 3.12
+streamlit==1.66.1
+pandas==3.1.0
+numpy==2.5.4
+sentence-transformers==6.2.0
+torch==2.14.1
+transformers==5.20.2
+scikit-learn==1.9.1
+neo4j==6.4.1
+langchain==1.4.7
+langchain-core==1.7.0
+langchain-ollama==1.1.0
+rapidfuzz==3.14.6

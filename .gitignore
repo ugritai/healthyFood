@@ -8,23 +8,20 @@ data/load_neo4j.py
 # Virtual environment
 healthyfood_env/
 
-# Evaluation — generated outputs (not source)
+# Evaluation - generated outputs (not source)
 evaluation/results/
 evaluation/figures/
 evaluation/__pycache__/
 evaluation/nohup*.log
 evaluation/results_old/
 
-# Claude memory
-.claude/
-
-# Survey app — secrets and generated outputs (not source)
+# Survey app - secrets and generated outputs (not source)
 survey/.streamlit/secrets.toml
 survey/analysis/service_account.json
 survey/analysis/results/
 survey/analysis/REPORT.md
 
-# Raw survey response exports — human-subjects data, not for version control
+# Raw survey response exports - human-subjects data, not for version control
 data/survey_results/
 
 # Byte-compiled / optimized / DLL files
@@ -237,3 +234,9 @@ __marimo__/
 .DS_Store
 data/kg_edits/
 survey/paper/
+
+# RecipeNLG corpus (2.3 GB, Kaggle: paultimothymooney/recipenlg); not redistributed
+data/RecipeNLG_dataset.csv
+
+# Fine-tuned sentence-transformer (419 MB); not versioned
+evaluation/12-20_22-39_1000016b_4ep_3000wu_2e-07lr/

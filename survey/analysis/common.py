@@ -1,11 +1,11 @@
 """
-FoodMedKG survey analysis — shared loading, statistics and plotting helpers.
+FoodMedKG survey analysis - shared loading, statistics and plotting helpers.
 
 Every analysis module imports from here, so the data is loaded and
 cleaned the same way everywhere.
 
 Cleaning: some respondents submitted their block more than once (page
-reloads — the repeated rows carry identical answers). Only the first
+reloads - the repeated rows carry identical answers). Only the first
 submission of each (respondent, item) pair is kept; otherwise those
 respondents would count two or more times towards every statistic.
 """
@@ -87,7 +87,7 @@ def xlsx_from_argv() -> Path:
 def _read_sheet(xlsx_path: Path, sheet: str, id_col: str) -> tuple[pd.DataFrame, int]:
     df = pd.read_excel(xlsx_path, sheet_name=sheet)
     if df.empty:
-        raise ValueError(f"The '{sheet}' sheet in {xlsx_path.name} is empty — nothing to analyze.")
+        raise ValueError(f"The '{sheet}' sheet in {xlsx_path.name} is empty - nothing to analyze.")
     df = df.sort_values("timestamp")
     deduped = df.drop_duplicates(subset=["respondent_id", id_col], keep="first")
     return deduped.reset_index(drop=True), len(df) - len(deduped)
@@ -138,7 +138,7 @@ def fleiss_kappa(table: np.ndarray) -> float:
 
 
 def gwet_ac1(table: np.ndarray) -> float:
-    """Gwet's AC1 — a chance correction that stays stable when one
+    """Gwet's AC1 - a chance correction that stays stable when one
     category dominates, where kappa tends to collapse."""
     table = np.asarray(table, dtype=float)
     p_bar = _observed_agreement(table).mean()

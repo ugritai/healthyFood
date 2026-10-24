@@ -1,56 +1,56 @@
+DATA PREPARATION
+
+Scripts are numbered in the order they are run. Arrows show the resulting
+MongoDB collection. ES = healthy ageing (Envejecimiento Saludable).
+
+
 FOOD TABLE
 
-1.
-- FooDB_grupo_id.py -> Create group ID -> FooDB_Grupos_ID
-
-2.
-- Food_Simplificada.py -> Add ID only to the relevant Food variables -> Food_Simplificada
+1. 1_FooDB_group_id.py: create the food group IDs -> FooDB_Grupos_ID
+2. 2_Food_Simplified.py: add the group ID to the relevant Food fields -> Food_Simplificada
 
 
-PHYSIOLOGY TABLE
+APPLIED PATHOPHYSIOLOGY TABLE
 
-- Updated in the same way as Food_Simplificada, adding group ID data -> FAALD_FooDB_Id
-
-
-FOOD_DISEASE_RELATION_DATASET TABLE
-
-- Manually: sources showing imprecise information are added, and non-important/non-food-related objects are removed.
-- Then, non-relevant fields are deleted, and "is_cause" is merged with "is_Treat" to obtain "suitable for disease".
-- Food ID is added -> FDR_FooDB_Id
+- Group IDs added in the same way as Food_Simplificada -> FAALD_FooDB_Id
 
 
-ALIMENTO_ENFERMEDAD_COMPLETA TABLE
+FOOD-DISEASE RELATION DATASET TABLE
 
-- Both tables are merged and group ID is added -> Alimento_Enfermedad_Completa
+- Manual step: relations with imprecise sources are added, and objects that are
+  not foods or not relevant are removed.
+- Non-relevant fields are deleted, and "is_cause" and "is_treat" are merged into
+  "suitable for disease".
+- Food ID added -> FDR_FooDB_Id
+
+
+FOOD-DISEASE TABLE
+
+- FAALD_FooDB_Id and FDR_FooDB_Id are merged and the group ID is added
+  -> Alimento_Enfermedad_Completa
 
 
 FOODB TABLE
 
-3.
-- FooDB_Pivotado.py -> There are errors and missing data in FooDB; they are filled using Food, Compounds, and Nutrients.
-- Then, only constituents with sources "USDA" and "DTU" are kept, returning relevant fields.
-- The table is pivoted so that all compounds are contained within the object corresponding to each food -> FooDB_Pivotado
-
-4.
-- FooDB_Final.py -> Add group ID to the final table -> FooDB_Alimento_Constituyentes
+3. 3_FooDB_Pivoted.py: errors and missing values in FooDB are filled using the
+   Food, Compounds and Nutrients tables. Only constituents whose source is USDA
+   or DTU are kept, with the relevant fields. The table is pivoted so that each
+   food holds all its compounds -> FooDB_Pivotado
+4. 4_FooDB_Final.py: add the group ID -> FooDB_Alimento_Constituyentes
 
 
-COOKING_METHODS TABLE
+COOKING METHODS TABLE
 
-- No changes, same as originally created manually
+- Created manually, no changes -> Cooking_Methods
 
 
-HEALTHY AGING TABLE
+HEALTHY AGEING TABLE
 
-5.
-- ES_Rango.py -> Obtain max and min values for each healthy aging "aspect", and divide the range into 5 equal parts (0 = bad, 4 = good).
-- Assign each value to its corresponding range -> Es_Rango and ES_min_max
-
-- Create ES_FooDB:
-  - Manually indicate which group/foods each object from the original Healthy Aging table belongs to
-
-6.
-- ES_Completa.py -> Merge ES_Rango with ES_FooDB -> Es_Alterada
-
-7.
-- ES_Final.py -> Separate food/group into different documents to simplify queries in Neo4j -> ES_Final
+5. 5_ES_Range.py: compute the minimum and maximum of each healthy ageing aspect
+   and split the range into 5 equal parts (0 = bad, 4 = good). Each value is
+   assigned to its part -> ES_Rango, ES_min_max
+- Manual step: assign each object of the original healthy ageing table to its
+  foods or food groups -> ES_FooDB
+6. 6_ES_Complete.py: merge ES_Rango with ES_FooDB -> ES_Alterada
+7. 7_ES_Final.py: split foods and groups into separate documents to simplify
+   the Neo4j queries -> ES_Final

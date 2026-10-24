@@ -1,0 +1,5 @@
+subset,unit,tau,n,rejected_pct
+all,names,0.68,256,93.8
+all,mentions,0.68,414,94.4
+some entry removed (n_removed > 0),names,0.68,246,93.5
+some entry removed (n_removed > 0),mentions,0.68,403,94.3

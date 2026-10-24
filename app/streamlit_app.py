@@ -125,7 +125,12 @@ def normalize_name(text):
     text = re.sub(r'\s+', ' ', text)
     return text
     
-def find_best_matches(input_ingredients, df, db_embeddings, model, score_threshold=0.4):
+# Acceptance threshold of the linker (paper, Sec. 5.2): links scoring below it
+# are shown as low-confidence and left for the user to review.
+TAU = 0.68
+
+
+def find_best_matches(input_ingredients, df, db_embeddings, model, tau=TAU):
     results = []
 
     for ingredient in input_ingredients:
@@ -149,7 +154,8 @@ def find_best_matches(input_ingredients, df, db_embeddings, model, score_thresho
             "food_name": best["food_name"],
             "id": int(best["id"]),
             "food_id": int(best["food_id"]),
-            "score": round(float(best["final_score"]), 4)
+            "score": round(float(best["final_score"]), 4),
+            "accepted": float(best["final_score"]) >= tau
         })
 
     return results
@@ -170,6 +176,7 @@ def get_disease(id):
         MATCH (f:Food {{FooDB_id:{id}}})-[r:Affects]->(d:Disease)
         RETURN d.Disease AS Disease,
                r.`Suitable for Disease` AS Suitable,
+               r.effect AS effect,
                r.Link AS link
     '''
     return run_query(query)
@@ -204,8 +211,9 @@ def get_tags(food_id, preparation=None):
     # --- HEALTH IMPACT ---
     diseases = get_disease(food_id)
     if diseases:
-        positives = sum(1 for d in diseases if d["Suitable"])
-        negatives = sum(1 for d in diseases if not d["Suitable"])
+        # Mixed-effect relations (Suitable is None) count as neither positive nor negative
+        positives = sum(1 for d in diseases if d["Suitable"] is True)
+        negatives = sum(1 for d in diseases if d["Suitable"] is False)
         if positives > 0 and negatives == 0:
             tags_html.append("<span style='background-color:#28a745; color:white; padding:3px 8px; border-radius:8px; font-size:12px; margin-left:5px;'>Healthy</span>")
         elif negatives > 0 and positives == 0:
@@ -263,7 +271,9 @@ def show_health_impact(food_id):
     with st.expander("### 🧬 Health impact", expanded=False):
         if diseases:
             for disease in diseases:
-                if disease["Suitable"]:
+                if disease["effect"] == "mixed":
+                    st.warning(f"⚖️ Mixed evidence on **{disease['Disease']}** (beneficial and harmful associations reported) \n\n[More Info]({disease['link']})")
+                elif disease["Suitable"]:
                     st.success(f"✅ Positive impact on **{disease['Disease']}** \n\n[More Info]({disease['link']})")
                 else:
                     st.error(f"⚠️ Negative impact on **{disease['Disease']}** \n\n[More Info]({disease['link']})")
@@ -292,10 +302,7 @@ def show_nutrient_data(id):
 
     def normalize_nutrient_name(name):
         return nutrient_aliases.get(name.strip().lower(), name)
-FoodMedKG Evaluation Survey
-No valid survey block was found in this link.
 
-Please use the exact link that was shared with you by the study coordinators (it should look like ...?block=3). If you believe this is an error, contact the research team rather than guessing a block number.
     # --- Normalizar y combinar nutrientes, conservando unidades ---
     normalized_constituents = {}
     for k, v in constituents.items():
@@ -565,7 +572,13 @@ with main:
                     st.markdown(f"- <span style='color:#000; font-weight:bold'>{ingredient}</span>: {amount} {tags}", unsafe_allow_html=True)
 
                     # Mostrar impactos de salud/nutrición
-                    with st.expander(f"Most similar ingredient found: {results[i]['food_name']}"):
+                    label = f"Most similar ingredient found: {results[i]['food_name']}"
+                    if not results[i]["accepted"]:
+                        label += " (low confidence, please review)"
+                    with st.expander(label):
+                        if not results[i]["accepted"]:
+                            st.warning(f"Low-confidence match: similarity {results[i]['score']:.2f} is below "
+                                       f"the acceptance threshold {TAU}. Check that this is the right food.")
                         show_preparation(preparation, "ingredient")  # quí usamos el método específico del ingrediente
                         show_health_impact(results[i]["food_id"])
                         show_healthy_aging(results[i]["food_id"])
@@ -593,6 +606,9 @@ with main:
                     f"## Found ingredient: <span style='color:#000; font-weight:bold'>{food_name}</span> {tags}",
                     unsafe_allow_html=True
                 )
+                if not results[0]["accepted"]:
+                    st.warning(f"Low-confidence match: similarity {results[0]['score']:.2f} is below "
+                               f"the acceptance threshold {TAU}. Check that this is the right food.")
 
                 id = results[0]["id"]
                 show_health_impact(results[0]["food_id"])

@@ -1,7 +1,7 @@
 """
 Run every survey analysis and write a single report.
 
-Outputs (all git-ignored — they contain real respondent data):
+Outputs (all git-ignored - they contain real respondent data):
     REPORT.md     all results in one file
     results/      one CSV per table
 
@@ -33,7 +33,7 @@ def main():
     print(f"Reading responses from {data.source}")
     sections = [module.run(data) for module in MODULES]
 
-    header = f"""# FoodMedKG human evaluation — analysis report
+    header = f"""# FoodMedKG human evaluation - analysis report
 
 Generated {date.today().isoformat()} by `run_all.py` from `{data.source.name}`.
 Each section is produced by the module of the same topic in `survey/analysis/`:

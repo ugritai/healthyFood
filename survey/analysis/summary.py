@@ -99,7 +99,7 @@ def run(data: SurveyData) -> str:
     ]
     return f"""## 0. Summary
 
-**Majority-vote accuracy: {h.accuracy}% (95% CI {h.ci_lo}–{h.ci_hi}%)** — {h.accepted} of {h.accepted + h.rejected}
+**Majority-vote accuracy: {h.accuracy}% (95% CI {h.ci_lo}–{h.ci_hi}%)** - {h.accepted} of {h.accepted + h.rejected}
 decided relations accepted. Every alternative metric is shown below with the same accuracy definition
 (accepted / decided) and a Wilson 95% CI.
 

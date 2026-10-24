@@ -110,7 +110,7 @@ def compute_extras_for_model(model_tag: str, benchmark: dict, results_dir: Path)
         extras = [e for e in extracted
                   if not any(_ingredient_match(e, ref) for ref in all_refs)]
         extras_map[name] = "|".join(sorted(set(extras)))
-        print(f"extras: {extras or '—'}")
+        print(f"extras: {extras or '-'}")
 
     # Read existing CSV, patch column, write back
     with open(csv_path, newline="", encoding="utf-8") as f:

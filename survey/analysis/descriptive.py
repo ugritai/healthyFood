@@ -1,7 +1,7 @@
 """
 Descriptive statistics: who answered, how many judgments, and the raw
 distribution of Agree / Not sure / Disagree per item and per relation
-type. No aggregation or modelling — the plain numbers everything else
+type. No aggregation or modelling - the plain numbers everything else
 builds on.
 
 Usage:

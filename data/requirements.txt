@@ -1,0 +1,4 @@
+# Python 3.12 - KG preparation scripts in data/
+pandas==3.1.0
+pymongo==4.19.0
+neo4j==6.4.1
